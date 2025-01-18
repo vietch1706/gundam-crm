@@ -1,0 +1,28 @@
+version: '3'
+services:
+    db_gundam:
+        container_name: "db_gundam"
+        platform: linux/x86_64
+        image: thanhvocse/mysql:8.0
+        restart: always
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./docker/mysql:/var/lib/mysql:delegated
+            - ./docker/mysqlbackup:/home:delegated
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+    php_gundam:
+        container_name: "php_gundam"
+        image: "thanhvocse/php:8.2-apache"
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - ./:/var/www/html:delegated
+          - ./null:/var/www/html/docker
+          - ~/.ssh:/root/.ssh:delegated
+        links:
+          - "db_gundam:db_gundam"
+        environment:
+          DOCUMENT_ROOT: "/"

@@ -1,0 +1,8 @@
+{
+    "http-basic": {
+        "gateway.octobercms.com": {
+            "username": "quangtm1209@gmail.com",
+            "password": ""
+        }
+    }
+}
