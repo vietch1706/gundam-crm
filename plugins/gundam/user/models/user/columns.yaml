@@ -1,0 +1,61 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    first_name:
+        label: first_name
+        type: text
+        searchable: true
+        sortable: true
+    last_name:
+        label: last_name
+        type: text
+        searchable: true
+        sortable: true
+    email:
+        label: email
+        type: text
+        searchable: true
+        sortable: true
+    is_activated:
+        label: is_activated
+        type: text
+        searchable: true
+        sortable: true
+    activated_at:
+        label: activated_at
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: true
+        sortable: true
+    phone:
+        label: phone
+        type: text
+        searchable: true
+        sortable: true
+    address:
+        label: address
+        type: text
+        searchable: true
+        sortable: true
+    link_facebook:
+        label: link_facebook
+        type: text
+        searchable: true
+        sortable: true
+    status:
+        label: status
+        type: number
+        searchable: true
+        sortable: true

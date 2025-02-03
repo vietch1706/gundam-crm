@@ -1,0 +1,45 @@
+fields:
+    first_name:
+        label: Họ
+        span: auto
+        type: text
+    last_name:
+        label: Tên
+        span: auto
+        type: text
+    email:
+        label: Email
+        span: auto
+        type: text
+    password:
+        label: 'Mật Khẩu'
+        span: auto
+        type: password
+    is_activated:
+        label: 'Kích Hoạt'
+        span: auto
+        type: dropdown
+    phone:
+        label: SDT
+        span: auto
+        type: text
+    address:
+        label: 'Địa Chỉ'
+        span: auto
+        type: text
+    sub_phone:
+        label: 'SDT 2'
+        span: auto
+        type: text
+    sub_address:
+        label: 'Địa Chỉ 2'
+        span: auto
+        type: text
+    link_facebook:
+        label: 'Link Facebook'
+        span: auto
+        type: text
+    status:
+        label: Status
+        span: auto
+        type: dropdown
