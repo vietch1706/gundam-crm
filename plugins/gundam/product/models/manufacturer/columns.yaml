@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: ID
+        type: text
+    name:
+        label: 'Tên'
+        type: text
+    slug:
+        label: 'Đường Dẫn'
+        type: text
+    country:
+        label: 'Quốc Gia'
+        type: text
+    created_at:
+        label: 'Tạo Lúc'
+        type: datetime
+    updated_at:
+        label: 'Cập Nhật Lúc'
+        type: datetime

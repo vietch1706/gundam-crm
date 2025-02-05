@@ -1,0 +1,16 @@
+fields:
+    name:
+        label: 'Tên'
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: 'Đường Dẫn'
+        span: auto
+        required: 1
+        type: text
+    country:
+        label: 'Quốc Gia'
+        span: auto
+        required: 1
+        type: text

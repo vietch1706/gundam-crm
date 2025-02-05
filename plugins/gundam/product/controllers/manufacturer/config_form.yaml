@@ -1,0 +1,10 @@
+name: Manufacturer
+form: $/gundam/product/models/manufacturer/fields.yaml
+modelClass: Gundam\Product\Models\Manufacturer
+defaultRedirect: gundam/product/manufacturer
+create:
+    redirect: 'gundam/product/manufacturer/update/:id'
+    redirectClose: gundam/product/manufacturer
+update:
+    redirect: gundam/product/manufacturer
+    redirectClose: gundam/product/manufacturer
