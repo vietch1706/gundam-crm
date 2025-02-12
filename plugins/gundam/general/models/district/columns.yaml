@@ -1,0 +1,18 @@
+columns:
+    id:
+        label: ID
+        type: number
+    name:
+        label: Tên
+        type: text
+    province_id:
+        label: Tỉnh
+        type: number
+        relation: province
+        select: name
+    created_at:
+        label: Ngày Tạo
+        type: datetime
+    updated_at:
+        label: Ngày Cập Nhật
+        type: datetime
