@@ -1,0 +1,13 @@
+list: $/gundam/general/models/ward/columns.yaml
+modelClass: Gundam\General\Models\Ward
+title: Ward
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'gundam/general/ward/preview/:id'
+filter: filters.yaml

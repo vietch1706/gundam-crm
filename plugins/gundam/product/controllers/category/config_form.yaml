@@ -1,0 +1,10 @@
+name: Category
+form: $/gundam/product/models/category/fields.yaml
+modelClass: Gundam\Product\Models\Category
+defaultRedirect: gundam/product/category
+create:
+    redirect: 'gundam/product/category/update/:id'
+    redirectClose: gundam/product/category
+update:
+    redirect: gundam/product/category
+    redirectClose: gundam/product/category

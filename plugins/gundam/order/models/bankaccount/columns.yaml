@@ -1,0 +1,45 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    image:
+        label: QR
+        type: partial
+        searchable: true
+        sortable: true
+        path: $/gundam/order/models/bankaccount/_image_column.htm
+    account_number:
+        label: 'Tên Tài Khoản'
+        type: text
+        searchable: true
+        sortable: true
+    account_name:
+        label: 'Số Tài Khoản'
+        type: text
+        searchable: true
+        sortable: true
+    type_id:
+        label: Loại
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: type
+    status:
+        label: 'Trạng Thái'
+        type: partial
+        searchable: true
+        sortable: true
+        path: $/gundam/order/models/bankaccount/_status_column.htm
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        searchable: true
+        sortable: true

@@ -1,0 +1,24 @@
+plugin:
+    name: 'gundam.product::lang.plugin.name'
+    description: 'gundam.product::lang.plugin.description'
+    author: Gundam
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    product:
+        label: 'Sản Phẩm'
+        url: /
+        icon: icon-cubes
+        sideMenu:
+            product-product:
+                label: 'Sản Phẩm'
+                url: gundam/product/product
+                icon: icon-list
+            product-category:
+                label: 'Danh mục'
+                url: gundam/product/category
+                icon: icon-tags
+            product-manufacturer:
+                label: 'Nhà Sản Xuất'
+                url: gundam/product/manufacturer
+                icon: icon-industry

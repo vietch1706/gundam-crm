@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: ID
+        type: number
+    name:
+        label: 'Tên'
+        type: text
+    price:
+        label: 'Giá'
+        type: text
+    quantity:
+        label: 'Số Lượng'
+        type: text

@@ -1,0 +1,8 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table gundam_order_bank_account'
+    - builder_table_create_gundam_order_bank_account.php
+v1.0.3:
+    - 'Created table gundam_order_type_bank'
+    - builder_table_create_gundam_order_type_bank.php

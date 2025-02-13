@@ -1,0 +1,21 @@
+fields:
+    id:
+        label: ID
+        span: auto
+        type: number
+    name:
+        label: Tên
+        span: auto
+        type: text
+    code:
+        label: Code Số
+        span: auto
+        type: number
+    codename:
+        label: Code Chữ
+        span: auto
+        type: text
+    phone_code:
+        label: Mã Điện Thoại
+        span: auto
+        type: text

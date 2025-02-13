@@ -1,0 +1,4 @@
+<?php
+$type = (new Gundam\Product\Models\Product()) ->
+getTypeOptions(); $class = [ 1 => 'text-body', 0 => 'text-body', ]; echo
+'<span class="'.$class[$value].'">'.$type[$value].'</span>';

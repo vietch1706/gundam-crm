@@ -1,0 +1,10 @@
+name: Province
+form: $/gundam/general/models/province/fields.yaml
+modelClass: Gundam\General\Models\Province
+defaultRedirect: gundam/general/province
+create:
+    redirect: 'gundam/general/province/update/:id'
+    redirectClose: gundam/general/province
+update:
+    redirect: gundam/general/province
+    redirectClose: gundam/general/province

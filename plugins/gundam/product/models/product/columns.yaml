@@ -1,0 +1,54 @@
+columns:
+    id:
+        label: ID
+        type: number
+    category:
+        label: 'Danh mục'
+        select: name
+        relation: category
+    manufacturer:
+        label: 'Nhà Sản Xuất'
+        select: name
+        relation: manufacturer
+    name:
+        label: 'Tên'
+        type: text
+    slug:
+        label: 'Đường Dẫn'
+        type: text
+    sku:
+        label: SKU
+        type: text
+    price:
+        label: 'Giá'
+        type: text
+    quantity:
+        label: 'Số Lượng'
+        type: text
+    material:
+        label: 'Chất Liệu'
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_material.htm
+    weight:
+        label: 'Cân Nặng'
+        type: text
+    type:
+        label: 'Loại'
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_type.htm
+    thumbnail:
+        label: 'Ảnh Bìa'
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_image.htm
+    character:
+        label: 'Nhân Vật'
+        type: text
+    size:
+        label: 'Kích Thước'
+        type: text
+    created_at:
+        label: 'Tạo Lúc'
+        type: datetime
+    updated_at:
+        label: 'Cập Nhật Lúc'
+        type: datetime

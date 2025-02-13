@@ -1,0 +1,9 @@
+fields:
+    name:
+        label: Tên
+        span: auto
+        type: text
+    status:
+        label: 'Trạng Thái'
+        span: auto
+        type: dropdown
