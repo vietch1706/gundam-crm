@@ -1,0 +1,10 @@
+name: BankAccount
+form: $/gundam/order/models/bankaccount/fields.yaml
+modelClass: Gundam\Order\Models\BankAccount
+defaultRedirect: gundam/order/bankaccount
+create:
+    redirect: 'gundam/order/bankaccount/update/:id'
+    redirectClose: gundam/order/bankaccount
+update:
+    redirect: gundam/order/bankaccount
+    redirectClose: gundam/order/bankaccount

@@ -1,0 +1,27 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: Tên
+        type: text
+        searchable: true
+        sortable: true
+    status:
+        label: 'Trạng Thái'
+        type: partial
+        searchable: true
+        sortable: true
+        path: $/gundam/order/models/type/_status_column.htm
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        searchable: true
+        sortable: true

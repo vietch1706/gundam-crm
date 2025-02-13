@@ -1,0 +1,20 @@
+plugin:
+    name: 'gundam.order::lang.plugin.name'
+    description: 'gundam.order::lang.plugin.description'
+    author: Gundam
+    icon: oc-icon-cart-plus
+    homepage: ''
+navigation:
+    bank:
+        label: 'Ngân Hàng'
+        url: /
+        icon: icon-money
+        sideMenu:
+            bank-account:
+                label: 'Tài Khoản'
+                url: gundam/order/bankaccount
+                icon: icon-dollar
+            bank-type:
+                label: 'Loại Ngân Hàng'
+                url: gundam/order/type
+                icon: icon-diamond
