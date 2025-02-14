@@ -1,0 +1,45 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    thumbnail:
+        label: 'Ảnh Bìa'
+        type: partial
+        path: ~/plugins/gundam/blog/models/blog/_image.htm
+    title:
+        label: 'Tiêu Đề'
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: 'Đường Dẫn'
+        type: text
+        searchable: true
+        sortable: true
+    author_id:
+        label: 'Tác Giả'
+        searchable: true
+        sortable: true
+        select: "concat(first_name, ' ', last_name)"
+        relation: author
+    status:
+        label: 'Trạng Thái'
+        type: partial
+        path: ~/plugins/gundam/blog/models/blog/_status.htm
+    view:
+        label: 'Lượt Xem'
+        type: number
+        searchable: false
+    published_at:
+        label: 'Ngày Xuất Bản'
+        type: text
+        sortable: true
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        sortable: true

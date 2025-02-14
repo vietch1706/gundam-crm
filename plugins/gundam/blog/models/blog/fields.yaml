@@ -1,0 +1,48 @@
+fields:
+    title:
+        label: 'Tiêu Đề'
+        span: auto
+        type: text
+    slug:
+        label: 'Đường Dẫn'
+        span: auto
+        required: 1
+        type: text
+        preset:
+            field: title
+            type: slug
+    slug@update:
+        label: 'Đường Dẫn'
+        span: auto
+        required: 1
+        type: text
+        disabled: true
+        preset:
+            field: title
+            type: slug
+    author_id:
+        label: 'Tác Giả'
+        span: auto
+        type: text
+        required: 1
+        disabled: true
+    status:
+        label: 'Trạng Thái'
+        span: auto
+        type: dropdown
+    content:
+        label: 'Nội Dung'
+        span: full
+        type: richeditor
+    thumbnail:
+        label: 'Ảnh bìa'
+        span: auto
+        required: 1
+        type: mediafinder
+        mode: image
+    published_at:
+        label: 'Ngày Xuất Bản'
+        required: 1
+        mode: date
+        span: auto
+        type: datepicker

@@ -1,0 +1,16 @@
+plugin:
+    name: 'gundam.blog::lang.plugin.name'
+    description: 'gundam.blog::lang.plugin.description'
+    author: gundam
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    blog:
+        label: Blog
+        url: /
+        icon: oc-icon-folder-open
+        sideMenu:
+            blog-blog:
+                label: Blog
+                url: gundam/blog/blog
+                icon: oc-icon-pencil

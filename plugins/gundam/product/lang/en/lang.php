@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'product',
+        'name' => 'Sản Phẩm',
         'description' => ''
     ]
 ];

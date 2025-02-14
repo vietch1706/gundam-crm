@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
 <ul>
-    <li><a href="<?= Backend::url('gundam/product/product') ?>">Product</a></li>
+    <li><a href="<?= Backend::url('gundam/product/product') ?>">Sản Phẩm</a></li>
     <li><?= e($this->pageTitle) ?></li>
 </ul>
 <?php Block::endPut() ?>

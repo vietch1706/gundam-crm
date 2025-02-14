@@ -1,5 +1,6 @@
 <?php namespace Gundam\Product;
 
+use Gundam\Product\components\ProductList;
 use System\Classes\PluginBase;
 
 /**
@@ -26,6 +27,9 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
+        return [
+            ProductList::class => 'productList',
+        ];
     }
 
     /**
