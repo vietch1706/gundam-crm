@@ -31,8 +31,8 @@ then
 elif [ $cmd == "plugin" ]; then
     echo "Enter plugin name"
     read plugin_name
-    php artisan plugin:refresh skechers.$plugin_name
-    echo "Refreshed plugin skechers.$plugin_name"
+    php artisan plugin:refresh gundam.$plugin_name
+    echo "Refreshed plugin gundam.$plugin_name"
 elif [ $cmd == "migrate" ]; then
     php artisan october:migrate
     echo "Migrate done"

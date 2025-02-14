@@ -1,0 +1,11 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Update backend_users attribute'
+    - update_backend_user.php
+v1.0.3:
+    - 'seeding backend_user_roles'
+    - seed_role_user.php
+v1.0.4:
+    - 'Created table gundam_user_deleted'
+    - builder_table_create_gundam_user_deleted.php

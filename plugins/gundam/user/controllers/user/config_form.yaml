@@ -1,0 +1,10 @@
+name: User
+form: $/gundam/user/models/user/fields.yaml
+modelClass: Gundam\User\Models\User
+defaultRedirect: gundam/user/user
+create:
+    redirect: 'gundam/user/user/update/:id'
+    redirectClose: gundam/user/user
+update:
+    redirect: gundam/user/user
+    redirectClose: gundam/user/user

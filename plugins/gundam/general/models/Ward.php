@@ -34,4 +34,14 @@ class Ward extends Model
         }
         return $result;
     }
+
+    public static function getWardByDistrict($districtId)
+    {
+        $data = Ward::where('district_id', $districtId)->get();
+        $result = [];
+        foreach ($data as $item) {
+            $result[$item->id] = $item->name;
+        }
+        return $result;
+    }
 }
