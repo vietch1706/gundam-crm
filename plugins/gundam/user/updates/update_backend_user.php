@@ -13,14 +13,17 @@ class UpdateBackendUser extends Migration
             if (!Schema::hasColumn('backend_users', 'phone')) {
                 $table->string('phone')->nullable();
             }
+            if (!Schema::hasColumn('backend_users', 'province_id')) {
+                $table->string('province_id')->nullable();
+            }
+            if (!Schema::hasColumn('backend_users', 'district_id')) {
+                $table->string('district_id')->nullable();
+            }
+            if (!Schema::hasColumn('backend_users', 'ward_id')) {
+                $table->string('ward_id')->nullable();
+            }
             if (!Schema::hasColumn('backend_users', 'address')) {
                 $table->string('address')->nullable();
-            }
-            if (!Schema::hasColumn('backend_users', 'sub_phone')) {
-                $table->string('sub_phone')->nullable();
-            }
-            if (!Schema::hasColumn('backend_users', 'sub_address')) {
-                $table->string('sub_address')->nullable();
             }
             if (!Schema::hasColumn('backend_users', 'link_facebook')) {
                 $table->string('link_facebook')->nullable();
@@ -37,9 +40,10 @@ class UpdateBackendUser extends Migration
         Schema::table('backend_users', function ($table) {
             $columns = [
                 'phone',
+                'province_id',
+                'district_id',
+                'ward_id',
                 'address',
-                'sub_phone',
-                'sub_address',
                 'link_facebook',
                 'status'
             ];

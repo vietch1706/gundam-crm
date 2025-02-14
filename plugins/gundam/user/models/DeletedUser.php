@@ -21,4 +21,8 @@ class DeletedUser extends Model
     public $rules = [
     ];
 
+    public $belongsTo = [
+        'user' => [User::class, 'key' => 'user_id', 'scope' => 'withTrashed']
+    ];
+
 }

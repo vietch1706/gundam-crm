@@ -23,23 +23,43 @@ fields:
         label: SDT
         span: auto
         type: text
-    address:
-        label: 'Địa Chỉ'
-        span: auto
-        type: text
-    sub_phone:
-        label: 'SDT 2'
-        span: auto
-        type: text
-    sub_address:
-        label: 'Địa Chỉ 2'
-        span: auto
-        type: text
     link_facebook:
         label: 'Link Facebook'
         span: auto
         type: text
     status:
-        label: Status
+        label: 'Trạng Thái'
+        showSearch: true
         span: auto
         type: dropdown
+    province_id:
+        label: Tỉnh
+        emptyOption: 'Chọn tỉnh/thành phố'
+        showSearch: true
+        span: auto
+        type: dropdown
+    district_id:
+        label: Huyện
+        emptyOption: 'Chọn huyện/quận'
+        showSearch: true
+        span: auto
+        dependsOn:
+            - province_id
+        trigger:
+            action: refresh
+            field: province_id
+        type: dropdown
+    ward_id:
+        label: Xã
+        emptyOption: 'Chọn xã/phường'
+        span: auto
+        type: dropdown
+        dependsOn:
+            - district_id
+        trigger:
+            action: refresh
+            field: district_id
+    address:
+        label: Địa chỉ
+        span: auto
+        type: text

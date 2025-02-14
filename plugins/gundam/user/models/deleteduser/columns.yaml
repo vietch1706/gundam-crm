@@ -1,26 +1,49 @@
 columns:
     id:
-        label: id
+        label: ID
         type: number
         searchable: true
         sortable: true
-    user_id:
-        label: user_id
-        type: number
+    user_first_name:
+        label: Họ
+        type: text
         searchable: true
         sortable: true
+        relation: user
+        select: first_name
+    user_last_name:
+        label: Tên
+        type: text
+        searchable: true
+        sortable: true
+        relation: user
+        select: last_name
+    user_email:
+        label: Email
+        type: text
+        searchable: true
+        sortable: true
+        relation: user
+        select: email
+    user_phone:
+        label: SDT
+        type: text
+        searchable: true
+        sortable: true
+        relation: user
+        select: phone
     reason:
-        label: reason
+        label: Lý do
         type: text
         searchable: true
         sortable: true
     created_at:
-        label: created_at
+        label: 'Ngày Tạo'
         type: datetime
         searchable: true
         sortable: true
     updated_at:
-        label: updated_at
+        label: 'Ngày Cập Nhật'
         type: datetime
         searchable: true
         sortable: true

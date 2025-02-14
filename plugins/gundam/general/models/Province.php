@@ -22,6 +22,18 @@ class Province extends Model
     ];
 
     public $hasMany = [
-      'districts' => [District::class, 'key' => 'province_id'],
+        'districts' => [District::class, 'key' => 'province_id'],
     ];
+
+    public static function getProvince()
+    {
+        $result = [];
+        $data = self::all();
+
+        foreach ($data as $item) {
+            $result[$item->id] = $item->name;
+        }
+
+        return $result;
+    }
 }

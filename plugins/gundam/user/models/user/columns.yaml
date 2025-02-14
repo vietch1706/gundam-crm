@@ -1,61 +1,47 @@
 columns:
     id:
-        label: id
+        label: ID
         type: number
         searchable: true
         sortable: true
     first_name:
-        label: first_name
+        label: Họ
         type: text
         searchable: true
         sortable: true
     last_name:
-        label: last_name
+        label: Tên
         type: text
         searchable: true
         sortable: true
     email:
-        label: email
+        label: Email
         type: text
-        searchable: true
-        sortable: true
-    is_activated:
-        label: is_activated
-        type: text
-        searchable: true
-        sortable: true
-    activated_at:
-        label: activated_at
-        type: text
-        searchable: true
-        sortable: true
-    created_at:
-        label: created_at
-        type: datetime
-        searchable: true
-        sortable: true
-    updated_at:
-        label: updated_at
-        type: datetime
         searchable: true
         sortable: true
     phone:
-        label: phone
-        type: text
-        searchable: true
-        sortable: true
-    address:
-        label: address
+        label: SDT
         type: text
         searchable: true
         sortable: true
     link_facebook:
-        label: link_facebook
+        label: 'Link Facebook'
         type: text
         searchable: true
         sortable: true
     status:
-        label: status
-        type: number
+        label: 'Trạng Thái'
+        type: partial
+        searchable: true
+        sortable: true
+        path: $/gundam/user/models/user/_status_column.htm
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
         searchable: true
         sortable: true

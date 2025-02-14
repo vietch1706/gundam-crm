@@ -38,4 +38,14 @@ class District extends Model
         }
         return $result;
     }
+
+    public static function getDistrictByProvince($proviceId)
+    {
+        $data = District::where('province_id', $proviceId)->get();
+        $result = [];
+        foreach ($data as $item) {
+            $result[$item->id] = $item->name;
+        }
+        return $result;
+    }
 }
