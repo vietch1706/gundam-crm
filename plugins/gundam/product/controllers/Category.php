@@ -18,14 +18,21 @@ class Category extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Danh Mục';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Danh Mục';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Danh Mục';
+                break;
+            default:
+                $this->pageTitle = 'Danh Mục';
+                break;
+        }
         BackendMenu::setContext('Gundam.Product', 'product', 'product-category');
     }
 
-    public function formExtendFields($form)
-    {
-        $model = $form->model;
-        $context = $this->formGetContext();
-
-        $model->readOnlyMode = ($context === 'update');
-    }
 }

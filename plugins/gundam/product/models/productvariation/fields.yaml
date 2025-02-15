@@ -4,7 +4,7 @@ fields:
         span: full
         type: text
     price:
-        label: 'Giá'
+        label: 'Giá (VNĐ)'
         span: full
         type: number
         min: 1

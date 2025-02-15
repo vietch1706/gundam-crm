@@ -9,6 +9,9 @@ fields:
         span: auto
         required: 1
         type: text
+        preset:
+            field: name
+            type: slug
     country:
         label: 'Quốc Gia'
         span: auto

@@ -12,3 +12,6 @@ v1.0.4:
 v1.0.5:
     - 'Created table gundam_product_product_variant'
     - builder_table_create_gundam_product_product_variant.php
+v1.0.6:
+    - 'Seed table gundam_product_category'
+    - seed_table_gundam_product_category.php

@@ -1,0 +1,22 @@
+columns:
+    id:
+        label: ID
+        type: number
+    name:
+        label: Tên
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: 'Đường Dẫn'
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        sortable: true
