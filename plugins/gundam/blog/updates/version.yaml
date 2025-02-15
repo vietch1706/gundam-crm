@@ -1,5 +1,11 @@
 v1.0.1:
     - 'Initialize plugin'
 v1.0.2:
+    - 'Created table gundam_blog_category'
+    - builder_table_create_gundam_blog_category.php
+v1.0.3:
     - 'Created table gundam_blog_blog'
     - builder_table_create_gundam_blog_blog.php
+v1.0.4:
+    - 'Seed table gundam_blog_category'
+    - seed_table_gundam_blog_category.php

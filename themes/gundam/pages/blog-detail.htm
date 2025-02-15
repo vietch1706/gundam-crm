@@ -1,37 +1,26 @@
 url = "/blog/:slug"
 layout = "default"
-title = "Chi Tiết Blog"
+title = "Chi Tiết Tin Tức"
 
 [blogDetail]
 slug = "{{ :slug }}"
-
+[blogList]
 ==
 {% if blog %}
 <div class="container mx-auto p-6">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-gray-900">{{ blog.title }}</h1>
-        <p class="text-gray-500 text-s mt-3">
-            <i class="fa-solid fa-user mr-1"></i>
-            Tác giả: <span class="font-medium">{{ blog.author.first_name }} {{ blog.author.last_name }}</span> |
-            Ngày đăng: {{ blog.published_at|date('d/m/Y') }}
-        </p>
-
-        <div class="max-w-4xl bg-white py-4 mt-8 border-y-2 border-dashed border-gray-500 ">
-            <ul>
-                {% for other_blog in other_blogs|shuffle %}
-                <li class="mb-2 pb-2">
-                    <span class="text-red-600 font-bold">»</span>
-                    <a href="{{ 'blog-detail'|page({ slug: other_blog.slug }) }}"
-                       class="text-gray-500 italic hover:text-blue-600">
-                        {{ other_blog.title }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
+        <div class="flex justify-between">
+            <p class="text-gray-500 text-sm mt-3">
+                <i class="fa-solid fa-user mr-1"></i>
+                Tác giả: <span class="font-medium">{{ blog.author.first_name }} {{ blog.author.last_name }}</span> |
+                Ngày đăng: {{ blog.published_at|date('d/m/Y') }}
+            </p>
+            <p class="text-gray-500 text-lg mt-3">
+                Lượt Xem: {{ blog.view }}
+            </p>
         </div>
 
-        <img src="{{ blog.thumbnail|media }}" alt="{{ blog.title }}"
-             class="w-full h-[300px] object-cover rounded-lg my-4"/>
 
         <div class="text-gray-800 text-lg leading-relaxed">
             {{ blog.content|raw }}
@@ -43,6 +32,65 @@ slug = "{{ :slug }}"
         </div>
     </div>
 </div>
+{% if other_blogs is not empty %}
+<div class="relative bg-gray-50 px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
+    <!--    <div class="absolute inset-0">-->
+    <!--        <div class="h-1/3 bg-white sm:h-2/3"></div>-->
+    <!--    </div>-->
+    <div class="relative mx-auto max-w-7xl">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bài Viết Liên Quan</h2>
+        </div>
+        <div
+            class="mx-auto mt-12 grid max-w-[{{ 400 * other_blogs|length }}px] gap-4 lg:gap-8 xl:gap-10 lg:max-w-[{{ 400 * other_blogs|length }}px] lg:grid-cols-{{ other_blogs|length }}">
+
+            {% for other_blog in other_blogs|shuffle %}
+
+            <div class="flex flex-col overflow-hidden rounded-lg shadow-lg max-w-[400px]">
+                <div class="flex-shrink-0">
+                    <img class="h-48 w-full object-cover"
+                         src="{{ other_blog.thumbnail|media }}" alt="{{ other_blog.title }}">
+                </div>
+                <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-indigo-600">
+                            <a href="#" class="hover:underline">{{ other_blog.category.name }}</a>
+                        </p>
+                        <a href="{{ 'blog-detail'|page({ slug: other_blog.slug }) }}" class="mt-2 block">
+                            <h3 class="text-2xl font-extrabold text-gray-900">{{ other_blog.title }}</h3>
+                            <div class="text-gray-900 text-base mt-3 line-clamp-3">
+                                {{ blogList.getFirstParagraph(other_blog.content)|raw }}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mt-3 flex items-center">
+                        <div class="ml-3">
+                            <p class="text-xs text-gray-500 mt-1">
+                                <i class="fa-solid fa-user mr-1"></i>
+                                Tác giả: <span class="font-medium">{{ other_blog.author.first_name }} {{
+                                    other_blog.author.last_name
+                                }}</span>
+                            </p>
+                            <div class="flex space-x-1 text-sm text-gray-500">
+                                <time>
+                                    Ngày {{ other_blog.published_at.day }} tháng {{ other_blog.published_at.month }} năm
+                                    {{ other_blog.published_at.year }}
+                                </time>
+                                <span aria-hidden="true">·</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% else %}
-<p class="text-center text-gray-500 mt-6">Bài viết không tồn tại.</p>
+<meta http-equiv="refresh" content="0; url={{ '404'|page }}">
+<script>
+    window.location.href = "{{ '404'|page }}";
+</script>
 {% endif %}

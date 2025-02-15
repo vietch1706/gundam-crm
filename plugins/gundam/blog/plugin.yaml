@@ -1,7 +1,7 @@
 plugin:
     name: 'gundam.blog::lang.plugin.name'
     description: 'gundam.blog::lang.plugin.description'
-    author: gundam
+    author: Gundam
     icon: oc-icon-adjust
     homepage: ''
 navigation:
@@ -14,3 +14,7 @@ navigation:
                 label: Blog
                 url: gundam/blog/blog
                 icon: oc-icon-pencil
+            blog-category:
+                label: Category
+                url: gundam/blog/category
+                icon: icon-sitemap

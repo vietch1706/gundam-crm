@@ -4,6 +4,7 @@ namespace Gundam\Blog\components;
 
 use Cms\Classes\ComponentBase;
 use Gundam\Blog\Models\Blog;
+use Log;
 
 class BlogDetail extends ComponentBase
 {
@@ -35,13 +36,22 @@ class BlogDetail extends ComponentBase
     public function onRun()
     {
         $slug = $this->property('slug');
-        $blog = Blog::where('slug', $slug)->first();
+        $blog = Blog::where('slug', $slug)
+            ->where('status', Blog::STATUS_PUBLISHED)
+            ->first();
         if (!$blog) {
-            return \Redirect::to('/blog');
+            return \Redirect::to('/404');
         }
         $perPage = (int)$this->property('limit');
-        $blogs = Blog::where('slug', '!=', $slug)->paginate($perPage);
+        $blogs = Blog::where('slug', '!=', $slug)
+            ->where('status', Blog::STATUS_PUBLISHED)
+            ->inRandomOrder()
+            ->take($perPage)
+            ->get();
+        Log::info($blogs);
         $this->page['other_blogs'] = $blogs;
+        $blog->view++;
+        $blog->save();
         $this->page['blog'] = $blog;
     }
 }

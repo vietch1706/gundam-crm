@@ -1,0 +1,24 @@
+url = "/404"
+layout = "default"
+title = "404 Trang không tìm thấy"
+==
+{% put meta %}
+<meta name="turbo-visit-control" content="error">
+{% endput %}
+<div class="flex items-center justify-center h-screen bg-gray-100 px-6">
+    <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="text-left">
+            <h1 class="text-4xl font-bold text-gray-900">Trang không tìm thấy
+            </h1>
+            <p class="mt-4 text-gray-600">Trang bạn đang tìm có thể đã bị xóa hoặc tạm thời không khả dụng.</p>
+            <a href="/"
+               class="mt-6 inline-block px-6 py-3 text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700">
+                Quay về trang chủ
+            </a>
+        </div>
+
+        <div class="flex justify-center">
+            <img src="{{ 'assets/images/404.png'|theme }}" alt="404 Image" class="max-w-full h-auto">
+        </div>
+    </div>
+</div>

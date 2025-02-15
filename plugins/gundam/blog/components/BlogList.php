@@ -5,7 +5,6 @@ namespace Gundam\Blog\components;
 use Cms\Classes\ComponentBase;
 use Gundam\Blog\Models\Blog;
 use Illuminate\Pagination\Paginator;
-use Log;
 
 class BlogList extends ComponentBase
 {
@@ -33,10 +32,11 @@ class BlogList extends ComponentBase
     {
         $perPage = $this->property('limit');
         $currentPage = Paginator::resolveCurrentPage();
-        $query = Blog::query();
+        $query = Blog::where('status', Blog::STATUS_PUBLISHED);
         $blogs = $query->paginate($perPage, $currentPage);
         $this->page['blogs'] = $blogs;
     }
+
 
     public function getFirstParagraph($content)
     {

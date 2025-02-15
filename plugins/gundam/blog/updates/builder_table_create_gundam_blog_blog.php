@@ -12,6 +12,7 @@ class BuilderTableCreateGundamBlogBlog extends Migration
             $table->string('title', 100);
             $table->string('slug', 100)->unique();
             $table->integer('author_id')->unsigned();
+            $table->tinyInteger('category_id')->unsigned();
             $table->longText('content');
             $table->boolean('status')->default(0);
             $table->string('thumbnail')->nullable();
@@ -22,6 +23,10 @@ class BuilderTableCreateGundamBlogBlog extends Migration
             $table->foreign('author_id')
                 ->references('id')
                 ->on('backend_users')
+                ->onDelete('cascade');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('gundam_blog_category')
                 ->onDelete('cascade');
         });
     }

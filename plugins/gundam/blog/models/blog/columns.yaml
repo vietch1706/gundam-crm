@@ -23,6 +23,11 @@ columns:
         sortable: true
         select: "concat(first_name, ' ', last_name)"
         relation: author
+    category_id:
+        label: 'Danh mục'
+        searchable: true
+        select: name
+        relation: category
     status:
         label: 'Trạng Thái'
         type: partial
@@ -33,7 +38,7 @@ columns:
         searchable: false
     published_at:
         label: 'Ngày Xuất Bản'
-        type: text
+        type: date
         sortable: true
     created_at:
         label: 'Ngày Tạo'

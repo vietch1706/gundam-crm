@@ -5,7 +5,7 @@ title = "Sản Phẩm"
 [productList]
 limit = 2
 ==
-<link type="text/css" rel="stylesheet" href=" {{"assets/css/paginate.css"|theme }}">
+<link type="text/css" rel="stylesheet" href=" {{'assets/css/paginate.css'|theme }}">
 {% if products|length %}
 <div class="container mx-auto p-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -34,5 +34,8 @@ limit = 2
     </div>
 </div>
 {% else %}
-<p class="text-center text-gray-500">No products found.</p>
+<meta http-equiv="refresh" content="0; url={{ '404'|page }}">
+<script>
+    window.location.href = "{{ '404'|page }}";
+</script>
 {% endif %}

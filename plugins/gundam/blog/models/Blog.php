@@ -3,13 +3,14 @@
 use Backend\Models\User;
 use BackendAuth;
 use Model;
+use October\Rain\Database\Traits\Validation;
 
 /**
  * Model
  */
 class Blog extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use Validation;
 
     public const STATUS_DRAFT = 0;
     public const STATUS_PUBLISHED = 1;
@@ -29,7 +30,20 @@ class Blog extends Model
         'thumbnail' => 'required|string',
         'published_at' => 'required',
     ];
-
+    public $attributes = [
+        'status' => self::STATUS_DRAFT,
+        'view' => 0,
+    ];
+    public $belongsTo = [
+        'author' => [
+            User::class,
+            'key' => 'author_id',
+        ],
+        'category' => [
+            Category::class,
+            'key' => 'category_id',
+        ],
+    ];
     protected $fillable = [
         'title',
         'slug',
@@ -39,21 +53,15 @@ class Blog extends Model
         'published_at',
     ];
     protected $dates = ['published_at'];
-    public $attributes = [
-        'status' => self::STATUS_DRAFT,
-        'view' => 0,
-    ];
 
-    public $belongsTo = [
-        'author' => [
-            User::class,
-            'key' => 'author_id',
-        ]
-    ];
-
-    protected function beforeSave()
+    public static function getCategory()
     {
-        $this->author_id = BackendAuth::getUser()->id;
+        $result = [];
+        $data = Category::all();
+        foreach ($data as $item) {
+            $result[$item->id] = $item->name;
+        }
+        return $result;
     }
 
     public function getStatusOptions()
@@ -62,5 +70,10 @@ class Blog extends Model
             self::STATUS_DRAFT => 'Bản nháp',
             self::STATUS_PUBLISHED => 'Đã xuất bản',
         ];
+    }
+
+    protected function beforeSave()
+    {
+        $this->author_id = BackendAuth::getUser()->id;
     }
 }
