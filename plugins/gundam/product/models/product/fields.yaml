@@ -1,14 +1,15 @@
 fields:
     id@update:
         hidden: true
+        type: text
     name:
-        label: Tên sản phẩm
+        label: 'Tên sản phẩm'
         span: auto
         required: 1
         type: text
         placeholder: 'Nhập tên sản phẩm'
     slug:
-        label: Đường dẫn
+        label: 'Đường dẫn'
         span: auto
         required: 1
         type: text
@@ -16,7 +17,7 @@ fields:
             field: name
             type: slug
     slug@update:
-        label: Đường dẫn
+        label: 'Đường dẫn'
         span: auto
         required: 1
         type: text
@@ -25,7 +26,7 @@ fields:
             field: name
             type: slug
     sku:
-        label: Mã SKU
+        label: 'Mã SKU'
         span: auto
         required: 1
         type: text
@@ -38,82 +39,99 @@ fields:
         min: 1
         placeholder: 'Nhập giá sản phẩm'
     quantity:
-        label: Số lượng
+        label: 'Số lượng'
         span: auto
         required: 1
         type: number
         min: 0
         placeholder: 'Nhập số lượng hiện có'
     category:
-        label: Danh mục
+        label: 'Danh mục'
         span: auto
         required: 1
         type: relation
         nameFrom: name
         placeholder: 'Chọn danh mục sản phẩm'
     manufacturer:
-        label: Nhà sản xuất
+        label: 'Nhà sản xuất'
         span: auto
         required: 1
         type: relation
         nameFrom: name
         placeholder: 'Chọn nhà sản xuất'
     material:
-        label: Chất liệu
+        label: 'Chất liệu'
         span: auto
         type: dropdown
         placeholder: 'Chọn loại chất liệu'
     weight:
-        label: Trọng lượng
+        label: 'Trọng lượng'
         span: auto
         placeholder: 'Nhập trọng lượng sản phẩm'
         required: 1
         type: number
         min: 1
     type:
-        label: Loại sản phẩm
+        label: 'Loại sản phẩm'
+        showSearch: true
         span: auto
+        placeholder: 'Chọn loại sản phẩm'
         required: 1
         type: dropdown
-        placeholder: 'Chọn loại sản phẩm'
+        comment: 'Sản phẩm Đa, sau khi Save sẽ thêm'
     thumbnail:
-        label: Ảnh bìa
+        label: 'Ảnh bìa'
+        mode: image
+        thumbOptions:
+            mode: crop
+            extension: auto
         span: auto
         required: 1
         type: mediafinder
-        mode: image
     gallery:
-        label: Bộ sưu tập
+        label: 'Bộ sưu tập'
         mode: image
+        imageWidth: '200'
+        imageHeight: '200'
         maxItems: 5
+        thumbOptions:
+            mode: crop
+            extension: auto
         span: auto
         required: 1
         type: mediafinder
-        useCaption: true
-        preset:
-            type: jsonable
+        comment: 'Tối đa 5 tấm hình'
     description:
-        label: Mô tả
+        label: 'Mô tả'
         span: full
         type: richeditor
         placeholder: 'Nhập mô tả chi tiết cho sản phẩm'
     character:
-        label: Nhân vật
+        label: 'Nhân vật'
         span: auto
         type: text
         placeholder: 'Nhập nhân vật liên quan đến sản phẩm'
     size:
-        label: Kích thước
+        label: 'Kích thước'
         span: auto
         type: text
         placeholder: 'Nhập kích thước sản phẩm'
     product_variants:
-        label: Biến thể
+        label: 'Biến thể'
         type: relation
         span: full
         trigger:
             action: show
             field: type
-            condition: value[1]
+            condition: 'value[1]'
         context:
             - update
+    is_limit:
+        label: 'Giới Hạn Mua?'
+        span: auto
+        type: dropdown
+    limit:
+        label: 'Giới Hạn'
+        span: auto
+        default: '1'
+        type: number

@@ -13,10 +13,10 @@ class BuilderTableCreateGundamProductProduct extends Migration
             $table->string('slug', 100)->unique();
             $table->string('sku')->unique();
             $table->tinyInteger('category_id')->unsigned();
-            $table->decimal('price', 15, 2)->unsigned();
+            $table->float('price', 10, 2)->unsigned();
             $table->smallInteger('quantity')->unsigned();
             $table->boolean('material');
-            $table->decimal('weight', 15, 2)->unsigned();
+            $table->float('weight', 10, 2)->unsigned();
             $table->tinyInteger('manufacturer_id')->unsigned();
             $table->boolean('type');
             $table->string('thumbnail');
@@ -24,6 +24,8 @@ class BuilderTableCreateGundamProductProduct extends Migration
             $table->string('character');
             $table->longText('description');
             $table->string('size');
+            $table->boolean('is_limit');
+            $table->integer('limit');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

@@ -17,6 +17,10 @@ class Product extends Model
 
     public const TYPE_SINGLE = 0;
     public const TYPE_MULTI = 1;
+
+    public const IS_LIMIT_YES = 1;
+    public const IS_LIMIT_NO = 0;
+
     /**
      * @var string table in the database used by the model.
      */
@@ -99,6 +103,14 @@ class Product extends Model
         return [
             self::TYPE_SINGLE => 'Đơn',
             self::TYPE_MULTI => 'Đa',
+        ];
+    }
+
+    public function getIsLimitOptions()
+    {
+        return [
+            self::IS_LIMIT_YES => 'Có',
+            self::IS_LIMIT_NO => 'Không'
         ];
     }
 }
