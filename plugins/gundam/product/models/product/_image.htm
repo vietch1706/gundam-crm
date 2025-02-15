@@ -1,2 +1,4 @@
 <?php
-echo '<img src="'.url(config('system.storage.media.path')) . $value.'" width="150px"/>';
+$url = Gundam\General\Helper\General::getBaseUrl($record->thumbnail);
+
+echo '<img src="' . $url . '" style="max-width: 80px; max-height: 80px;">';

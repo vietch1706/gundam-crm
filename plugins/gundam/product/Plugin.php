@@ -1,6 +1,7 @@
 <?php namespace Gundam\Product;
 
 use Gundam\Product\components\ProductList;
+use Gundam\Product\Models\Setting;
 use System\Classes\PluginBase;
 
 /**
@@ -37,5 +38,14 @@ class Plugin extends PluginBase
      */
     public function registerSettings()
     {
+        return [
+            'settings' => [
+                'label' => 'Cài đặt ngày giới hạn',
+                'description' => 'Giới hạn mua sản phẩm',
+                'category' => 'CATEGORY_BACKEND',
+                'icon' => 'icon-cog',
+                'class' => Setting::class,
+            ]
+        ];
     }
 }

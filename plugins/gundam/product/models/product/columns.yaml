@@ -2,6 +2,22 @@ columns:
     id:
         label: ID
         type: number
+    thumbnail:
+        label: 'Ảnh Bìa'
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_image.htm
+    sku:
+        label: SKU
+        type: text
+        searchable: true
+    name:
+        label: Tên
+        type: text
+        searchable: true
+    slug:
+        label: 'Đường Dẫn'
+        type: text
+        searchable: true
     category_id:
         label: 'Danh mục'
         searchable: true
@@ -12,18 +28,6 @@ columns:
         searchable: true
         select: name
         relation: manufacturer
-    name:
-        label: Tên
-        type: text
-        searchable: true
-    slug:
-        label: 'Đường Dẫn'
-        type: text
-        searchable: true
-    sku:
-        label: SKU
-        type: text
-        searchable: true
     price:
         label: 'Giá (VNĐ)'
         type: text
@@ -44,10 +48,6 @@ columns:
         label: Loại
         type: partial
         path: ~/plugins/gundam/product/models/product/_type.htm
-    thumbnail:
-        label: 'Ảnh Bìa'
-        type: partial
-        path: ~/plugins/gundam/product/models/product/_image.htm
     character:
         label: 'Nhân Vật'
         type: text
