@@ -3,11 +3,23 @@ columns:
         label: ID
         type: number
     name:
-        label: 'Tên'
+        label: Tên
         type: text
+        searchable: true
+        sortable: true
     price:
-        label: 'Giá'
+        label: 'Giá (VNĐ)'
         type: text
+        sortable: true
     quantity:
         label: 'Số Lượng'
         type: text
+        sortable: true
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        sortable: true

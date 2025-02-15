@@ -1,0 +1,59 @@
+title = "Chi Tiết Blog"
+layout = "default"
+url = "/chi-tiet-blog"
+==
+{% set blog = blogDetail.blog %}
+
+<div class="container mx-auto p-6">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ blog.title }}</h1>
+
+            <div class="flex items-center space-x-4 text-sm text-gray-600 mb-6">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-user mr-2"></i>
+                    <span>{{ blog.author.first_name }} {{ blog.author.last_name }}</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-calendar mr-2"></i>
+                    <span>{{ blog.published_at|date("d/m/Y") }}</span>
+                </div>
+            </div>
+
+            {% if blog.thumbnail %}
+            <div class="mb-6">
+                <img src="{{ blog.thumbnail|media }}"
+                     alt="{{ blog.title }}"
+                     class="w-full h-[400px] object-cover rounded-lg"/>
+            </div>
+            {% endif %}
+
+            <!-- Content -->
+            <div class="prose max-w-none">
+                {{ blog.content|raw }}
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center mt-8">
+            {% if blogDetail.previousPost %}
+            <a href="{{ 'blog-detail'|page({ slug: blogDetail.previousPost.slug }) }}"
+               class="flex items-center text-blue-600 hover:text-blue-700">
+                <i class="fa-solid fa-arrow-left mr-2"></i>
+                Bài trước
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+
+            {% if blogDetail.nextPost %}
+            <a href="{{ 'blog-detail'|page({ slug: blogDetail.nextPost.slug }) }}"
+               class="flex items-center text-blue-600 hover:text-blue-700">
+                Bài sau
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

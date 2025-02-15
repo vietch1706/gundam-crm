@@ -18,6 +18,20 @@ class Manufacturer extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Nhà Sản Xuất';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Nhà Sản Xuất';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Nhà Sản Xuất';
+                break;
+            default:
+                $this->pageTitle = 'Nhà Sản Xuất';
+                break;
+        }
         BackendMenu::setContext('Gundam.Product', 'product', 'product-manufacturer');
     }
 

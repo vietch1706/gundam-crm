@@ -23,8 +23,8 @@ class Product extends Model
     public $table = 'gundam_product_product';
     public $rules = [
         'name' => 'required',
-        'slug' => 'required|unique:gundam_product_product',
-        'sku' => 'required|unique:gundam_product_product',
+        'slug' => 'required|unique:gundam_product_product,slug',
+        'sku' => 'required|unique:gundam_product_product,sku',
         'price' => 'required|numeric|gt:0',
         'quantity' => 'required|numeric|min:0',
         'category_id' => 'required',
@@ -100,5 +100,25 @@ class Product extends Model
             self::TYPE_SINGLE => 'Đơn',
             self::TYPE_MULTI => 'Đa',
         ];
+    }
+
+    public static function getCategory()
+    {
+        $result = [];
+        $data = Category::all();
+        foreach ($data as $item) {
+            $result[$item->id] = $item->name;
+        }
+        return $result;
+    }
+
+    public static function getManufacturer()
+    {
+        $result = [];
+        $data = Manufacturer::all();
+        foreach ($data as $item) {
+            $result[$item->id] = $item->name;
+        }
+        return $result;
     }
 }

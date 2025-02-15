@@ -31,7 +31,7 @@ fields:
         type: text
         placeholder: 'Nhập mã SKU'
     price:
-        label: Giá
+        label: Giá (VNĐ)
         span: auto
         required: 1
         type: number

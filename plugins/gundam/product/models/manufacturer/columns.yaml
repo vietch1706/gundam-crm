@@ -3,17 +3,25 @@ columns:
         label: ID
         type: text
     name:
-        label: 'Tên'
+        label: Tên
         type: text
+        searchable: true
+        sortable: true
     slug:
         label: 'Đường Dẫn'
         type: text
+        searchable: true
+        sortable: true
     country:
         label: 'Quốc Gia'
         type: text
+        searchable: true
+        sortable: true
     created_at:
-        label: 'Tạo Lúc'
+        label: 'Ngày Tạo'
         type: datetime
+        sortable: true
     updated_at:
-        label: 'Cập Nhật Lúc'
+        label: 'Ngày Cập Nhật'
         type: datetime
+        sortable: true

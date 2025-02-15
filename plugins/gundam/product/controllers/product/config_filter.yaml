@@ -1,0 +1,21 @@
+scopes:
+    category_id:
+        label: Danh Mục
+        type: dropdown
+        emptyOption: Chọn Danh Mục
+        conditions: "category_id = :value"
+        optionsMethod: getCategory
+    manufacturer_id:
+        label: Nhà Sản Xuất
+        type: dropdown
+        emptyOption: Chọn Nhà Sản Xuất
+        conditions: "manufacturer_id = :value"
+        optionsMethod: getManufacturer
+    type:
+        label: 'Loại'
+        type: dropdown
+        emptyOption: Chọn Loại
+        conditions: "type = ':value'"
+        options:
+            0: 'Đơn'
+            1: 'Đa'
