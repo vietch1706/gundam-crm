@@ -17,8 +17,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Lý do xóa user</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 id="modal-alert-title-id-2" class="modal-title">Lý do xóa user</h5>
             </div>
             <div class="modal-body">
                 <textarea id="deleteReasonInput" class="form-control" rows="3" placeholder="Nhập lý do..."></textarea>
@@ -35,7 +34,7 @@
     function openDeleteModal() {
         let selectedUsers = $('input[name="checked[]"]:checked').map(function () {
             return $(this).val();
-        }).get(); // Lấy danh sách ID user đã chọn
+        }).get();
 
         if (selectedUsers.length === 0) {
             alert('Vui lòng chọn user cần xóa!');

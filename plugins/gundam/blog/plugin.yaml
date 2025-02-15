@@ -11,10 +11,10 @@ navigation:
         icon: oc-icon-folder-open
         sideMenu:
             blog-blog:
-                label: Blog
+                label: Tin Tức
                 url: gundam/blog/blog
                 icon: oc-icon-pencil
             blog-category:
-                label: Category
+                label: Thể Loại
                 url: gundam/blog/category
                 icon: icon-sitemap

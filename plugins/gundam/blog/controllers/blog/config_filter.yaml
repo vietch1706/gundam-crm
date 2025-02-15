@@ -10,5 +10,4 @@ scopes:
     published_at:
         label: 'Ngày Xuất Bản'
         type: date
-        conditions:
-            between: "published_at >= ':after' AND published_at <= ':before'"
+        conditions: "published_at = ':value'"
