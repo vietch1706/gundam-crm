@@ -1,0 +1,7 @@
+scopes:
+    province_id:
+        label: Tỉnh
+        type: dropdown
+        emptyOption: Chọn Tỉnh
+        conditions: province_id = :value
+        optionsMethod: getProvince

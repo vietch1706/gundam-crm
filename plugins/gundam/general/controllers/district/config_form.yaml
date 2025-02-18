@@ -1,0 +1,10 @@
+name: District
+form: $/gundam/general/models/district/fields.yaml
+modelClass: Gundam\General\Models\District
+defaultRedirect: gundam/general/district
+create:
+    redirect: 'gundam/general/district/update/:id'
+    redirectClose: gundam/general/district
+update:
+    redirect: gundam/general/district
+    redirectClose: gundam/general/district

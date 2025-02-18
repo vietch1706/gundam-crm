@@ -1,0 +1,13 @@
+list: $/gundam/general/models/district/columns.yaml
+modelClass: Gundam\General\Models\District
+title: District
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'gundam/general/district/preview/:id'
+filter: filters.yaml

@@ -1,0 +1,10 @@
+name: Ward
+form: $/gundam/general/models/ward/fields.yaml
+modelClass: Gundam\General\Models\Ward
+defaultRedirect: gundam/general/ward
+create:
+    redirect: 'gundam/general/ward/update/:id'
+    redirectClose: gundam/general/ward
+update:
+    redirect: gundam/general/ward
+    redirectClose: gundam/general/ward

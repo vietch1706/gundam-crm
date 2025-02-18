@@ -1,0 +1,7 @@
+scopes:
+    district_id:
+        label: Huyện
+        type: dropdown
+        emptyOption: Chọn Huyện
+        conditions: district_id = :value
+        optionsMethod: getDistrict

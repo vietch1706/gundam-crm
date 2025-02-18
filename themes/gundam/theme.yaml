@@ -1,0 +1,16 @@
+name: Gundam
+description: Gundam Theme
+author: ''
+homepage: 'http://localhost'
+code: ''
+form:
+    fields:
+        site_name:
+            label: Gundam Biên Hòa
+            default: Gundam Biên Hòa
+        logo:
+            label: Logo
+            type: mediafinder
+            mode: image
+            imageWidth: 100
+            imageHeight: 100

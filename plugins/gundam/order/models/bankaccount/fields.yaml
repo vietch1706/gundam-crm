@@ -1,0 +1,30 @@
+fields:
+    account_name:
+        label: 'Tên Tài Khoản'
+        span: auto
+        type: text
+    account_number:
+        label: 'Số Tài Khoản'
+        span: auto
+        type: text
+    type_id:
+        label: Loại
+        showSearch: true
+        span: auto
+        type: dropdown
+    status:
+        label: 'Trạng thái'
+        showSearch: true
+        span: auto
+        type: dropdown
+    image:
+        label: 'Ảnh QR'
+        mode: image
+        imageWidth: '200'
+        imageHeight: '200'
+        maxItems: '1'
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: mediafinder

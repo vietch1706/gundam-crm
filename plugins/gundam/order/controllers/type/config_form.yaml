@@ -1,0 +1,10 @@
+name: Type
+form: $/gundam/order/models/type/fields.yaml
+modelClass: Gundam\Order\Models\Type
+defaultRedirect: gundam/order/type
+create:
+    redirect: 'gundam/order/type/update/:id'
+    redirectClose: gundam/order/type
+update:
+    redirect: gundam/order/type
+    redirectClose: gundam/order/type

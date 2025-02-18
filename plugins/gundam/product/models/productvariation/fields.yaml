@@ -1,0 +1,15 @@
+fields:
+    name:
+        label: 'Tên'
+        span: full
+        type: text
+    price:
+        label: 'Giá (VNĐ)'
+        span: full
+        type: number
+        min: 1
+    quantity:
+        label: 'Số Lượng'
+        span: full
+        type: number
+        min: 0

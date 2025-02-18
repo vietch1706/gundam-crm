@@ -1,0 +1,10 @@
+name: Product
+form: $/gundam/product/models/product/fields.yaml
+modelClass: Gundam\Product\Models\Product
+defaultRedirect: gundam/product/product
+create:
+    redirect: 'gundam/product/product/update/:id'
+    redirectClose: gundam/product/product
+update:
+    redirect: gundam/product/product
+    redirectClose: gundam/product/product

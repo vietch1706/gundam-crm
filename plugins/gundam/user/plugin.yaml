@@ -1,0 +1,20 @@
+plugin:
+    name: 'gundam.user::lang.plugin.name'
+    description: 'gundam.user::lang.plugin.description'
+    author: Gundam
+    icon: oc-icon-user
+    homepage: ''
+navigation:
+    users:
+        label: 'Người Dùng'
+        url: /
+        icon: icon-users
+        sideMenu:
+            users-user:
+                label: 'Người dùng'
+                url: gundam/user/user
+                icon: icon-users
+            users-deleted:
+                label: 'Danh Sách Chặn'
+                url: gundam/user/deleteduser
+                icon: icon-trash

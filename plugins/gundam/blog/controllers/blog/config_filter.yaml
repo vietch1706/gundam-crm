@@ -1,0 +1,13 @@
+scopes:
+    status:
+        label: 'Trạng Thái'
+        type: dropdown
+        emptyOption: Chọn Trạng Thái
+        conditions: "status = ':value'"
+        options:
+            0: 'Bản Nháp'
+            1: 'Đã Xuất Bản'
+    published_at:
+        label: 'Ngày Xuất Bản'
+        type: date
+        conditions: "published_at = ':value'"

@@ -1,0 +1,19 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+product_variants:
+    label: Biến thể
+    view:
+        form: $/gundam/product/models/productvariation/fields.yaml
+        list: $/gundam/product/models/productvariation/columns.yaml
+        toolbarButtons: create|delete
+        recordsPerPage: 10
+        showCheckboxes: true
+    manage:
+        form: $/gundam/product/models/productvariation/fields.yaml
+        list: $/gundam/product/models/productvariation/columns.yaml
+        showSearch: true
+        recordsPerPage: 10
+    widget: form
+    emptyMessage: Không có biến thể nào

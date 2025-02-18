@@ -1,0 +1,64 @@
+columns:
+    id:
+        label: ID
+        type: number
+    thumbnail:
+        label: 'Ảnh Bìa'
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_image.htm
+    sku:
+        label: SKU
+        type: text
+        searchable: true
+    name:
+        label: Tên
+        type: text
+        searchable: true
+    slug:
+        label: 'Đường Dẫn'
+        type: text
+        searchable: true
+    category_id:
+        label: 'Danh mục'
+        searchable: true
+        select: name
+        relation: category
+    manufacturer_id:
+        label: 'Nhà Sản Xuất'
+        searchable: true
+        select: name
+        relation: manufacturer
+    price:
+        label: 'Giá (VNĐ)'
+        type: text
+        sortable: true
+    quantity:
+        label: 'Số Lượng'
+        type: text
+        sortable: true
+    material:
+        label: 'Chất Liệu'
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_material.htm
+    weight:
+        label: 'Cân Nặng'
+        type: text
+        sortable: true
+    type:
+        label: Loại
+        type: partial
+        path: ~/plugins/gundam/product/models/product/_type.htm
+    character:
+        label: 'Nhân Vật'
+        type: text
+    size:
+        label: 'Kích Thước'
+        type: text
+    created_at:
+        label: 'Ngày Tạo'
+        type: datetime
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        sortable: true

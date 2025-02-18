@@ -1,0 +1,14 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table gundam_general_province'
+    - builder_table_create_gundam_general_province.php
+v1.0.3:
+    - 'Created table gundam_general_district'
+    - builder_table_create_gundam_general_district.php
+v1.0.4:
+    - 'Created table gundam_general_ward'
+    - builder_table_create_gundam_general_ward.php
+v1.0.5:
+    - 'Seed area'
+    - seed_area.php

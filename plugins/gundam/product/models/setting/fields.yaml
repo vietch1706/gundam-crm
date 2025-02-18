@@ -1,0 +1,5 @@
+fields:
+    limit_date:
+        label: 'Số ngày giới hạn'
+        type: number
+        default: 0

@@ -1,0 +1,24 @@
+plugin:
+    name: 'gundam.general::lang.plugin.name'
+    description: 'gundam.general::lang.plugin.description'
+    author: Gundam
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    general:
+        label: 'Tiện Ích'
+        url: /
+        icon: icon-life-ring
+        sideMenu:
+            general-province:
+                label: Tỉnh
+                url: gundam/general/province
+                icon: icon-map-marker
+            general-district:
+                label: Huyện
+                url: gundam/general/district
+                icon: icon-map-marker
+            general-ward:
+                label: Xã
+                url: gundam/general/ward
+                icon: icon-map-marker

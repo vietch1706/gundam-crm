@@ -1,0 +1,21 @@
+fields:
+    id:
+        label: ID
+        span: auto
+        type: number
+    name:
+        label: Tên
+        span: auto
+        type: text
+    codename:
+        label: Code Chữ
+        span: auto
+        type: text
+    code:
+        label: Code Số
+        span: auto
+        type: number
+    province:
+        label: Tỉnh
+        span: auto
+        type: relation

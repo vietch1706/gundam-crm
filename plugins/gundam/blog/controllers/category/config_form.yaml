@@ -1,0 +1,10 @@
+name: Category
+form: $/gundam/blog/models/category/fields.yaml
+modelClass: Gundam\Blog\Models\Category
+defaultRedirect: gundam/blog/category
+create:
+    redirect: 'gundam/blog/category/update/:id'
+    redirectClose: gundam/blog/category
+update:
+    redirect: gundam/blog/category
+    redirectClose: gundam/blog/category
