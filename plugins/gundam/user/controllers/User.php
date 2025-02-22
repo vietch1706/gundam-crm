@@ -20,6 +20,20 @@ class User extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Người Dùng';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Người Dùng';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Người Dùng';
+                break;
+            default:
+                $this->pageTitle = 'Người Dùng';
+                break;
+        }
         BackendMenu::setContext('Gundam.User', 'users', 'users-user');
     }
 

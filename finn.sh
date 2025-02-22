@@ -16,6 +16,8 @@ sudo chown -R $USER:www-data plugins/
 chmod -R 775 plugins/
 sudo chown -R $USER:www-data storage/
 chmod -R 775 storage/
+sudo chown -R $USER:www-data themes/
+chmod -R 775 themes/
 echo "Permisstion OK!!"
 elif [ $cmd == "v1" ];
 then

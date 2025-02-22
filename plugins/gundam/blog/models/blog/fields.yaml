@@ -53,3 +53,4 @@ fields:
         mode: date
         span: auto
         type: datepicker
+        default: now

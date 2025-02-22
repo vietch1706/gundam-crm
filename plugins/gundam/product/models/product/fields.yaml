@@ -32,7 +32,7 @@ fields:
         type: text
         placeholder: 'Nhập mã SKU'
     price:
-        label: Giá (VNĐ)
+        label: 'Giá (VNĐ)'
         span: auto
         required: 1
         type: number
@@ -114,11 +114,17 @@ fields:
         label: 'Giới Hạn Mua?'
         span: auto
         type: dropdown
+        required: true
     limit:
         label: 'Giới Hạn'
         span: auto
         default: '1'
+        trigger:
+            action: show
+            field: is_limit
+            condition: 'value[1]'
         type: number
+        required: true
     product_variants:
         label: 'Biến thể'
         type: relation

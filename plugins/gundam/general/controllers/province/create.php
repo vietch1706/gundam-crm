@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('gundam/general/province') ?>">Province</a></li>
+        <li><a href="<?= Backend::url('gundam/general/province') ?>">Tỉnh</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>

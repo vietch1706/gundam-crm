@@ -17,6 +17,20 @@ class Category extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Thể Loại';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Thể Loại';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Thể Loại';
+                break;
+            default:
+                $this->pageTitle = 'Thể Loại';
+                break;
+        }
         BackendMenu::setContext('Gundam.Blog', 'blog', 'blog-category');
     }
 

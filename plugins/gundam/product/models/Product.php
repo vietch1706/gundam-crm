@@ -90,6 +90,13 @@ class Product extends Model
         'deleted_at'
     ];
 
+    public function beforeValidation()
+    {
+        if ($this->is_limit == self::IS_LIMIT_YES) {
+
+        }
+    }
+
     public function getMaterialOptions()
     {
         return [

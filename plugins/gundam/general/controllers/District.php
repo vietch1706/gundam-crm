@@ -17,6 +17,20 @@ class District extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Huyện';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Huyện';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Huyện';
+                break;
+            default:
+                $this->pageTitle = 'Huyện';
+                break;
+        }
         BackendMenu::setContext('Gundam.General', 'general', 'general-district');
     }
 

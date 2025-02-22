@@ -40,8 +40,8 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label' => 'Cài đặt ngày giới hạn',
-                'description' => 'Giới hạn mua sản phẩm',
+                'label' => 'Cài đặt ngày giới hạn mua hàng',
+                'description' => 'Giới hạn mua sản phẩm trên ngày',
                 'category' => 'CATEGORY_BACKEND',
                 'icon' => 'icon-cog',
                 'class' => Setting::class,

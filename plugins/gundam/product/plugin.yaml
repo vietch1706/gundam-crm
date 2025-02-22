@@ -2,7 +2,7 @@ plugin:
     name: 'gundam.product::lang.plugin.name'
     description: 'gundam.product::lang.plugin.description'
     author: Gundam
-    icon: oc-icon-adjust
+    icon: oc-icon-cube
     homepage: ''
 navigation:
     product:
