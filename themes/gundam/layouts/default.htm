@@ -1,5 +1,5 @@
-
 description = "Default layout"
+
 [session]
 security = "all"
 ==
@@ -19,5 +19,15 @@ security = "all"
 {% page %}
 </body>
 <script src="{{ 'assets/js/index.global.js'|theme }}"></script>
+<script src="{{ 'assets/js/jquery-3.7.1.min.js'|theme }}"></script>
+<script>
+    (function ($) {
+        $('#productFilter').on('change', 'input,select', function () {
+            var $form = $(this).closest('form');
+            $form.request();
+        })
+    })(jQuery);
+</script>
+{% framework %}
 
 </html>

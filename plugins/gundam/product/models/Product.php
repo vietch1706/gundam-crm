@@ -3,7 +3,6 @@
 use Model;
 use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Database\Traits\Validation;
-use function extract;
 
 /**
  * Model
@@ -91,14 +90,32 @@ class Product extends Model
         'deleted_at'
     ];
 
-    public function scopeListingProduct($query, $options = [])
+    public function scopeListProduct($query, $options = [])
     {
         extract(array_merge([
             'page' => 1,
             'perPage' => 2,
-            'sort' => '',
+            'price' => null,
         ], $options));
-        return $query->paginate($perPage, $page);
+
+        if ($price !== null) {
+            if (is_array($price)) {
+                $minPrice = $price['min'] ?? null;
+                $maxPrice = $price['max'] ?? null;
+
+                if ($minPrice !== null) {
+                    $query->where('price', '>=', $minPrice);
+                }
+
+                if ($maxPrice !== null) {
+                    $query->where('price', '<=', $maxPrice);
+                }
+            } else {
+                $query->where('price', '=', $price);
+            }
+        }
+
+        return $query->paginate($perPage, ['*'], 'page', $page);
     }
 
     public function getMaterialOptions()
