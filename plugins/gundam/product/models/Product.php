@@ -3,6 +3,7 @@
 use Model;
 use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Database\Traits\Validation;
+use function extract;
 
 /**
  * Model
@@ -89,6 +90,16 @@ class Product extends Model
     protected $dates = [
         'deleted_at'
     ];
+
+    public function scopeListingProduct($query, $options = [])
+    {
+        extract(array_merge([
+            'page' => 1,
+            'perPage' => 2,
+            'sort' => '',
+        ], $options));
+        return $query->paginate($perPage, $page);
+    }
 
     public function getMaterialOptions()
     {

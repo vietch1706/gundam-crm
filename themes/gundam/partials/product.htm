@@ -22,8 +22,9 @@
         </div>
         {% endfor %}
     </div>
-    <div class="pagination mt-4">
-        {{ products.links()|raw }}
-    </div>
+</div>
+{% else %}
+<div class="container mx-auto p-6 text-center">
+    <p class="text-xl text-gray-600">Không có sản phẩm nào.</p>
 </div>
 {% endif %}
