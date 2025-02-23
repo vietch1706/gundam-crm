@@ -6,3 +6,9 @@ v1.0.2:
 v1.0.3:
     - 'Created table gundam_order_type_bank'
     - builder_table_create_gundam_order_type_bank.php
+v1.0.4:
+    - 'Created table gundam_order_entity'
+    - builder_table_create_gundam_order_entity.php
+v1.0.5:
+    - 'Created table gundam_order_detail'
+    - builder_table_create_gundam_order_detail.php

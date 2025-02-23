@@ -18,3 +18,12 @@ navigation:
                 label: 'Loại Ngân Hàng'
                 url: gundam/order/type
                 icon: icon-diamond
+    order:
+        label: 'Đơn Hàng'
+        url: /
+        icon: icon-cubes
+        sideMenu:
+            order-order:
+                label: Order
+                url: gundam/order/order
+                icon: icon-cube
