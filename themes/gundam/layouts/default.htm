@@ -7,27 +7,25 @@ security = "all"
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{ this.theme.site_name}} - {{ this.page.title}}</title>
+    <title>{{ this.theme.site_name }} - {{ this.page.title }}</title>
     <link rel="icon" type="image/x-icon" sizes="32x32" href="{{ 'assets/images/logo.png'|theme }}">
     <meta name="title" content="{{ this.page.meta_title }}">
     <meta name="description" content="{{ this.page.meta_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% put styles %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ 'assets/css/nouislider.css' | theme }}">
+    <link type="text/css" rel="stylesheet" href="{{ 'assets/css/custom-scrollbar.css'|theme }}">
+    <link type="text/css" rel="stylesheet" href="{{ 'assets/css/custom-slider.css'|theme }}">
+    <link type="text/css" rel="stylesheet" href="{{ 'assets/css/reset.css'|theme }}">
+    {% endput %}
     {% styles %}
 </head>
 <body>
 {% page %}
-</body>
+<script src="{{ 'assets/js/nouislider.min.js' | theme }}"></script>
 <script src="{{ 'assets/js/index.global.js'|theme }}"></script>
-<script src="{{ 'assets/js/jquery-3.7.1.min.js'|theme }}"></script>
-<script>
-    (function ($) {
-        $('#productFilter').on('change', 'input,select', function () {
-            var $form = $(this).closest('form');
-            $form.request();
-        })
-    })(jQuery);
-</script>
-{% framework %}
+<script src="{{ 'assets/js/pagination.js'|theme }}"></script>
 
+</body>
 </html>

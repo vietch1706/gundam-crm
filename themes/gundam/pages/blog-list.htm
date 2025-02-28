@@ -63,8 +63,7 @@ limit = 2
     </div>
 </div>
 {% else %}
-<meta http-equiv="refresh" content="0; url={{ '404'|page }}">
-<script>
-    window.location.href = "{{ '404'|page }}";
-</script>
+<div class="container mx-auto p-6 text-center">
+    <p class="text-xl text-gray-600">Không có tin tức nào.</p>
+</div>
 {% endif %}

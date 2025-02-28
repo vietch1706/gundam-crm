@@ -1,42 +1,10 @@
-* {
-    font-family: "Bungee Inline", cursive;
-    font-family: "Manrope", sans-serif;
-    box-sizing: border-box;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
     margin: 0;
-    padding: 0;
 }
 
-ul,
-ol,
-li {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-button {
-    border: none;
-    background-color: transparent;
-    outline: none;
-}
-
-input {
-    border: none;
-    outline: none;
-}
-
-.main-component {
-    background: #071e42;
-}
-
-.main-enter-active,
-.main-leave-active {
-    transition: opacity 0.5s;
-}
-
-.main-enter,
-.main-leave-to {
-    opacity: 0;
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

@@ -12,15 +12,33 @@ class Product extends Model
     use Validation;
     use SoftDelete;
 
-    public const MATERIAL_PLASTIC = 0;
-    public const MATERIAL_ALLOY = 1;
+    public const PAGE_DEFAULT = 1;
+    public const PER_PAGE = 3;
+    public const MATERIAL_PLASTIC_ABS = 0;
+    public const MATERIAL_PLASTIC_PS = 1;
+    public const MATERIAL_ALLOY = 2;
 
     public const TYPE_SINGLE = 0;
     public const TYPE_MULTI = 1;
 
     public const IS_LIMIT_YES = 1;
     public const IS_LIMIT_NO = 0;
+    public const PRICE_RANGES = array(
+        'min' => 0,
+        'max' => 5000000,
+    );
+    public const SORT_OPTIONS = [
+        'popularity' => 'pop',
+        'created_at' => 'ctime',
+        'price' => 'price',
+    ];
 
+    public const ORDER_OPTIONS = [
+        'asc' => 'asc',
+        'desc' => 'desc',
+    ];
+
+    public const DEFAULT_ORDER = self::ORDER_OPTIONS['desc'];
     /**
      * @var string table in the database used by the model.
      */
@@ -41,7 +59,7 @@ class Product extends Model
     ];
 
     public $attributes = [
-        'material' => self::MATERIAL_PLASTIC,
+        'material' => self::MATERIAL_PLASTIC_ABS,
         'type' => self::TYPE_SINGLE,
         'quantity' => 0,
     ];
@@ -93,35 +111,44 @@ class Product extends Model
     public function scopeListProduct($query, $options = [])
     {
         extract(array_merge([
-            'page' => 1,
-            'perPage' => 2,
-            'price' => null,
+            'page' => self::PAGE_DEFAULT,
+            'perPage' => self::PER_PAGE,
+            'price' => self::PRICE_RANGES,
+            'category' => null,
+            'sortBy' => null,
+            'orderBy' => Product::DEFAULT_ORDER,
         ], $options));
 
-        if ($price !== null) {
-            if (is_array($price)) {
-                $minPrice = $price['min'] ?? null;
-                $maxPrice = $price['max'] ?? null;
+        if (is_array($price)) {
+            if ($price['min'] !== null) {
+                $query->where('price', '>=', $price['min']);
+            }
 
-                if ($minPrice !== null) {
-                    $query->where('price', '>=', $minPrice);
-                }
-
-                if ($maxPrice !== null) {
-                    $query->where('price', '<=', $maxPrice);
-                }
-            } else {
-                $query->where('price', '=', $price);
+            if ($price['max'] !== null) {
+                $query->where('price', '<=', $price['max']);
             }
         }
 
-        return $query->paginate($perPage, ['*'], 'page', $page);
+
+        if ($category !== null) {
+            $query->whereHas('category', fn($q) => $q->where('slug', $category));
+        }
+
+        if (!empty($sortBy) && $sortBy !== self::SORT_OPTIONS['popularity']) {
+            $sortBy = self::SORT_OPTIONS[$sortBy] ?? 'created_at';
+            $orderBy = self::ORDER_OPTIONS[$orderBy] ?? self::DEFAULT_ORDER;
+            $query->orderBy($sortBy, $orderBy);
+        }
+
+
+        return $query->paginate($perPage, $page);
     }
 
     public function getMaterialOptions()
     {
         return [
-            self::MATERIAL_PLASTIC => 'Nhựa',
+            self::MATERIAL_PLASTIC_ABS => 'Nhựa ABS',
+            self::MATERIAL_PLASTIC_PS => 'Nhựa PS',
             self::MATERIAL_ALLOY => 'Hợp kim, Cao su',
         ];
     }
