@@ -1,0 +1,18 @@
+fields:
+    title:
+        label: 'Tiêu đề'
+        span: full
+        type: text
+    content:
+        label: 'Nội dung'
+        size: large
+        span: full
+        type: richeditor
+    slug:
+        label: Slug
+        span: auto
+        disabled: 1
+        preset:
+            field: title
+            type: slug
+        type: text
