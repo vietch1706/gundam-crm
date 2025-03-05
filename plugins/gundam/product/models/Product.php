@@ -1,4 +1,5 @@
-<?php namespace Gundam\Product\Models;
+<?php
+namespace Gundam\Product\Models;
 
 use Model;
 use October\Rain\Database\Traits\SoftDelete;
@@ -39,6 +40,9 @@ class Product extends Model
     ];
 
     public const DEFAULT_ORDER = self::ORDER_OPTIONS['desc'];
+    public const IS_DISCOUNT_YES = 1;
+    public const IS_DISCOUNT_NO = 0;
+
     /**
      * @var string table in the database used by the model.
      */
@@ -140,8 +144,18 @@ class Product extends Model
             $query->orderBy($sortBy, $orderBy);
         }
 
-
         return $query->paginate($perPage, $page);
+    }
+
+    public function beforeValidate()
+    {
+        if ($this->is_limit == self::IS_LIMIT_YES) {
+            $this->rules['limit'] = ['required', 'numeric', 'gt:0'];
+        }
+
+        if ($this->is_discount == self::IS_DISCOUNT_YES) {
+            $this->rules['limit'] = ['required', 'numeric'];
+        }
     }
 
     public function getMaterialOptions()
@@ -166,6 +180,14 @@ class Product extends Model
         return [
             self::IS_LIMIT_YES => 'Có',
             self::IS_LIMIT_NO => 'Không'
+        ];
+    }
+
+    public function getIsDiscountOptions()
+    {
+        return [
+            self::IS_DISCOUNT_YES => 'Có',
+            self::IS_DISCOUNT_NO => 'Không'
         ];
     }
 

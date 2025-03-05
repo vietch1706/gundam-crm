@@ -26,6 +26,8 @@ class BuilderTableCreateGundamProductProduct extends Migration
             $table->string('size');
             $table->boolean('is_limit');
             $table->integer('limit');
+            $table->boolean('is_discount');
+            $table->float('discount', 10, 2)->default(0);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

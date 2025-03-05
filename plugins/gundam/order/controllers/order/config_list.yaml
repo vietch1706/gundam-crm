@@ -1,0 +1,12 @@
+list: $/gundam/order/models/order/columns.yaml
+modelClass: Gundam\Order\Models\Order
+title: Order
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'gundam/order/order/update/:id'

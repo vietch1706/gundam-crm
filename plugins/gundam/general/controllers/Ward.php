@@ -17,6 +17,20 @@ class Ward extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Xã';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Xã';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Xã';
+                break;
+            default:
+                $this->pageTitle = 'Xã';
+                break;
+        }
         BackendMenu::setContext('Gundam.General', 'general', 'general-ward');
     }
 

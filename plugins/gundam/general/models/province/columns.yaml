@@ -2,15 +2,20 @@ columns:
     id:
         label: ID
         type: number
+        searchable: true
     name:
         label: Tên
         type: text
+        searchable: true
     phone_code:
-        label: Mã Điện Thoại
+        label: 'Mã Điện Thoại'
         type: text
+        searchable: true
     created_at:
-        label: Ngày Tạo
+        label: 'Ngày Tạo'
         type: datetime
+        searchable: true
     updated_at:
-        label: Ngày Cập Nhật
+        label: 'Ngày Cập Nhật'
         type: datetime
+        searchable: true

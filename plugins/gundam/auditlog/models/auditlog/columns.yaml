@@ -1,0 +1,53 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    user_id:
+        label: User ID
+        type: text
+        searchable: true
+        sortable: true
+    user_name:
+        label: User ID
+        type: text
+        searchable: true
+        sortable: true
+        relation: user
+        select: CONCAT(first_name,' ',last_name)
+    action:
+        label: 'Hành Động'
+        type: text
+        searchable: true
+        sortable: true
+    model_type:
+        label: Model
+        type: text
+        searchable: true
+        sortable: true
+    model_id:
+        label: 'Model ID'
+        type: text
+        searchable: true
+        sortable: true
+    old_data:
+        label: 'Data Cũ'
+        type: text
+        searchable: true
+        sortable: true
+    new_data:
+        label: 'Data Mới'
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: 'Ngày Tạo'
+        type: date
+        searchable: true
+        sortable: true
+    updated_at:
+        label: 'Ngày Cập Nhật'
+        type: datetime
+        searchable: true
+        sortable: true

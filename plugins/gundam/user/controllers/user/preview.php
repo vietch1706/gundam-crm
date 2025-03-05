@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('gundam/user/user') ?>">User</a></li>
+        <li><a href="<?= Backend::url('gundam/user/user') ?>">Người Dùng</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>

@@ -1,0 +1,31 @@
+columns:
+    id:
+        label: id
+        type: number
+    user_id:
+        label: user_id
+        type: number
+    campaign_id:
+        label: campaign_id
+        type: number
+    total_price:
+        label: total_price
+        type: text
+    address:
+        label: address
+        type: text
+    phone:
+        label: phone
+        type: text
+    email:
+        label: email
+        type: text
+    status:
+        label: status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
