@@ -1,0 +1,7 @@
+name: SupportivePage
+form: $/gundam/general/models/supportivepage/fields.yaml
+modelClass: Gundam\General\Models\SupportivePage
+defaultRedirect: gundam/general/supportivepage
+update:
+    redirect: gundam/general/supportivepage
+    redirectClose: gundam/general/supportivepage
