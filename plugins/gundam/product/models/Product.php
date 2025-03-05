@@ -1,4 +1,5 @@
-<?php namespace Gundam\Product\Models;
+<?php
+namespace Gundam\Product\Models;
 
 use Model;
 use October\Rain\Database\Traits\SoftDelete;
@@ -12,14 +13,35 @@ class Product extends Model
     use Validation;
     use SoftDelete;
 
-    public const MATERIAL_PLASTIC = 0;
-    public const MATERIAL_ALLOY = 1;
+    public const PAGE_DEFAULT = 1;
+    public const PER_PAGE = 3;
+    public const MATERIAL_PLASTIC_ABS = 0;
+    public const MATERIAL_PLASTIC_PS = 1;
+    public const MATERIAL_ALLOY = 2;
 
     public const TYPE_SINGLE = 0;
     public const TYPE_MULTI = 1;
 
     public const IS_LIMIT_YES = 1;
     public const IS_LIMIT_NO = 0;
+    public const PRICE_RANGES = array(
+        'min' => 0,
+        'max' => 5000000,
+    );
+    public const SORT_OPTIONS = [
+        'popularity' => 'pop',
+        'created_at' => 'ctime',
+        'price' => 'price',
+    ];
+
+    public const ORDER_OPTIONS = [
+        'asc' => 'asc',
+        'desc' => 'desc',
+    ];
+
+    public const DEFAULT_ORDER = self::ORDER_OPTIONS['desc'];
+    public const IS_DISCOUNT_YES = 1;
+    public const IS_DISCOUNT_NO = 0;
 
     /**
      * @var string table in the database used by the model.
@@ -41,7 +63,7 @@ class Product extends Model
     ];
 
     public $attributes = [
-        'material' => self::MATERIAL_PLASTIC,
+        'material' => self::MATERIAL_PLASTIC_ABS,
         'type' => self::TYPE_SINGLE,
         'quantity' => 0,
     ];
@@ -90,17 +112,57 @@ class Product extends Model
         'deleted_at'
     ];
 
-    public function beforeValidation()
+    public function scopeListProduct($query, $options = [])
+    {
+        extract(array_merge([
+            'page' => self::PAGE_DEFAULT,
+            'perPage' => self::PER_PAGE,
+            'price' => self::PRICE_RANGES,
+            'category' => null,
+            'sortBy' => null,
+            'orderBy' => Product::DEFAULT_ORDER,
+        ], $options));
+
+        if (is_array($price)) {
+            if ($price['min'] !== null) {
+                $query->where('price', '>=', $price['min']);
+            }
+
+            if ($price['max'] !== null) {
+                $query->where('price', '<=', $price['max']);
+            }
+        }
+
+
+        if ($category !== null) {
+            $query->whereHas('category', fn($q) => $q->where('slug', $category));
+        }
+
+        if (!empty($sortBy) && $sortBy !== self::SORT_OPTIONS['popularity']) {
+            $sortBy = self::SORT_OPTIONS[$sortBy] ?? 'created_at';
+            $orderBy = self::ORDER_OPTIONS[$orderBy] ?? self::DEFAULT_ORDER;
+            $query->orderBy($sortBy, $orderBy);
+        }
+
+        return $query->paginate($perPage, $page);
+    }
+
+    public function beforeValidate()
     {
         if ($this->is_limit == self::IS_LIMIT_YES) {
+            $this->rules['limit'] = ['required', 'numeric', 'gt:0'];
+        }
 
+        if ($this->is_discount == self::IS_DISCOUNT_YES) {
+            $this->rules['limit'] = ['required', 'numeric'];
         }
     }
 
     public function getMaterialOptions()
     {
         return [
-            self::MATERIAL_PLASTIC => 'Nhựa',
+            self::MATERIAL_PLASTIC_ABS => 'Nhựa ABS',
+            self::MATERIAL_PLASTIC_PS => 'Nhựa PS',
             self::MATERIAL_ALLOY => 'Hợp kim, Cao su',
         ];
     }
@@ -118,6 +180,14 @@ class Product extends Model
         return [
             self::IS_LIMIT_YES => 'Có',
             self::IS_LIMIT_NO => 'Không'
+        ];
+    }
+
+    public function getIsDiscountOptions()
+    {
+        return [
+            self::IS_DISCOUNT_YES => 'Có',
+            self::IS_DISCOUNT_NO => 'Không'
         ];
     }
 

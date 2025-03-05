@@ -2,14 +2,23 @@ fields:
     name:
         label: 'Tên'
         span: full
+        required: 1
         type: text
+    image:
+        label: 'Hình Ảnh'
+        mode: image
+        span: full
+        required: 1
+        type: mediafinder
     price:
         label: 'Giá (VNĐ)'
         span: full
+        required: 1
         type: number
         min: 1
     quantity:
         label: 'Số Lượng'
         span: full
+        required: 1
         type: number
         min: 0

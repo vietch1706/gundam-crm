@@ -1,4 +1,4 @@
-url = "/blog/:slug"
+url = "/tin-tuc/:slug"
 layout = "default"
 title = "Chi Tiết Tin Tức"
 
@@ -42,7 +42,7 @@ slug = "{{ :slug }}"
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bài Viết Liên Quan</h2>
         </div>
         <div
-            class="mx-auto mt-12 grid max-w-[{{ 400 * other_blogs|length }}px] gap-4 lg:gap-8 xl:gap-10 lg:max-w-[{{ 400 * other_blogs|length }}px] lg:grid-cols-{{ other_blogs|length }}">
+            class="mx-auto mt-12 grid max-w-[400px] gap-4 lg:gap-8 xl:gap-10 lg:max-w-[400px] lg:grid-cols-3">
 
             {% for other_blog in other_blogs|shuffle %}
 

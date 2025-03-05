@@ -4,6 +4,8 @@ use Backend\Models\User;
 use BackendAuth;
 use Model;
 use October\Rain\Database\Traits\Validation;
+use function array_merge;
+use function extract;
 
 /**
  * Model
@@ -14,6 +16,8 @@ class Blog extends Model
 
     public const STATUS_DRAFT = 0;
     public const STATUS_PUBLISHED = 1;
+    public const PAGE_DEFAULT = 1;
+    public const PER_PAGE = 10;
     /**
      * @var string table in the database used by the model.
      */
@@ -70,6 +74,18 @@ class Blog extends Model
             self::STATUS_DRAFT => 'Bản nháp',
             self::STATUS_PUBLISHED => 'Đã xuất bản',
         ];
+    }
+
+    public function scopeListBlog($query, $options = [])
+    {
+        extract(array_merge([
+            'page' => self::PAGE_DEFAULT,
+            'perPage' => self::PER_PAGE,
+            'category' => null,
+        ], $options));
+
+
+        return $query->paginate($perPage, $page);
     }
 
     protected function beforeSave()

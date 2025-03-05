@@ -1,0 +1,21 @@
+---
+url = "/"
+layout = "default"
+title = "Sản Phẩm"
+
+[productList]
+==
+
+<div class="container mx-auto p-6 flex flex-col md:flex-row gap-6">
+    <div class="w-full md:w-1/4">
+        {% partial 'product/filter' %}
+    </div>
+    {# Main Content #}
+    <div class="w-full md:w-3/4">
+        {% partial 'product/sort' %}
+
+        {% partial 'product/list' %}
+    </div>
+</div>
+
+<script src="{{ 'assets/js/product.js'|theme }}"></script>

@@ -1,0 +1,36 @@
+<h1
+    class="relative inline-block text-4xl font-bold mb-4 after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-6px] after:w-1/6 after:h-1 after:bg-orange-500 after:transition-all after:duration-300 text-center w-full">
+    Sản Phẩm Liên Quan
+</h1>
+{% if relatedProducts|length %}
+<div class="relative py-12">
+    <div id="related-carousel" class="flex gap-4 overflow-x-hidden justify-center">
+        {% for related in relatedProducts %}
+        <a href="{{ 'product-detail'|page({ slug: related.slug }) }}" class="block flex-shrink-0 w-64">
+            <div
+                class="related-item h-full bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
+                data-index="{{ loop.index0 }}">
+                <img src="{{ related.image|media }}"
+                     alt="{{ related.name }}"
+                     class="w-full h-40 object-cover rounded-md mb-2">
+                <h3 class="text-lg font-medium text-gray-800 whitespace-nowrap overflow-hidden text-ellipsis">
+                    {{ related.name }}</h3>
+                <p class="text-red-500 font-bold">{{ related.price|number_format(0, '.', '.') }} VNĐ</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <button id="related-prev"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white border-2 border-orange-500 text-orange-500 p-2 rounded-full hover:bg-orange-100 focus:outline-none focus:ring-4 focus:ring-orange-300 transition-all duration-300 ease-in-out z-10 cursor-pointer"
+            aria-label="Previous related products">
+        <i class="fas fa-chevron-left w-4 h-4"></i>
+    </button>
+    <button id="related-next"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white border-2 border-orange-500 text-orange-500 p-2 rounded-full hover:bg-orange-100 focus:outline-none focus:ring-4 focus:ring-orange-300 transition-all duration-300 ease-in-out z-10 cursor-pointer"
+            aria-label="Next related products">
+        <i class="fas fa-chevron-right w-4 h-4"></i>
+    </button>
+</div>
+{% else %}
+<p class="text-gray-600">Không có sản phẩm liên quan.</p>
+{% endif %}

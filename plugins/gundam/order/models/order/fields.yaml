@@ -1,0 +1,60 @@
+fields:
+    user_id:
+        label: 'Người Dùng'
+        span: auto
+        type: dropdown
+    campaign_id:
+        label: 'Khuyến Mãi'
+        span: auto
+        type: dropdown
+    total_price:
+        label: 'Tổng Giá'
+        span: auto
+        type: number
+    address:
+        label: 'Địa Chỉ'
+        span: auto
+        type: text
+    phone:
+        label: SDT
+        span: auto
+        type: text
+    email:
+        label: Email
+        span: auto
+        type: text
+    status:
+        label: 'Trạng Thái'
+        span: auto
+        type: number
+tabs:
+    fields:
+        detail:
+            label: 'Sản phẩm'
+            type: repeater
+            tab: 'Sản phẩm'
+            prompt: 'Thêm sản phẩm'
+            form:
+                fields:
+                    product:
+                        label: 'Chọn sản phẩm'
+                        type: relation
+                        nameFrom: name
+                        span: auto
+                        changeHandler: onUpdateTotalPrice
+                    quantity:
+                        label: 'Số lượng'
+                        type: number
+                        default: 1
+                        span: auto
+                        changeHandler: onUpdateTotalPrice
+                    price:
+                        label: 'Đơn giá'
+                        type: number
+                        readOnly: true
+                        span: auto
+        total_price:
+            label: 'Tổng tiền'
+            type: number
+            readOnly: true
+            tab: 'Thông tin'

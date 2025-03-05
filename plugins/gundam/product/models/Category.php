@@ -30,4 +30,11 @@ class Category extends Model
         'deleted_at'
     ];
 
+    public function validateCategory(string $category): void
+    {
+        $exists = $this->where('slug', $category)->exists();
+        if (!$exists) {
+            throw new \ValidationException("Danh Mục Không Hợp Lệ: {$category}");
+        }
+    }
 }
