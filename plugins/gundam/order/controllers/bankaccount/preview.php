@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('gundam/order/bankaccount') ?>">BankAccount</a></li>
+        <li><a href="<?= Backend::url('gundam/order/bankaccount') ?>">Tài Khoản</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>

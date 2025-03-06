@@ -17,6 +17,20 @@ class Blog extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Tin Tức';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Tin Tức';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Tin Tức';
+                break;
+            default:
+                $this->pageTitle = 'Tin Tức';
+                break;
+        }
         BackendMenu::setContext('Gundam.Blog', 'blog', 'blog-blog');
     }
 

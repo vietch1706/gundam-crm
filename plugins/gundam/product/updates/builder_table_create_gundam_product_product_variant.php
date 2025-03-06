@@ -15,6 +15,7 @@ class BuilderTableCreateGundamProductProductVariant extends Migration
             $table->string('name', 100);
             $table->decimal('price', 15, 2)->unsigned();
             $table->smallInteger('quantity')->unsigned();
+            $table->string('image');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

@@ -17,6 +17,20 @@ class BankAccount extends Controller
     public function __construct()
     {
         parent::__construct();
+        switch ($this->action) {
+            case 'create':
+                $this->pageTitle = 'Thêm Tài Khoản';
+                break;
+            case 'update':
+                $this->pageTitle = 'Chỉnh Sửa Tài Khoản';
+                break;
+            case 'preview':
+                $this->pageTitle = 'Xem Trước Tài Khoản';
+                break;
+            default:
+                $this->pageTitle = 'Tài Khoản';
+                break;
+        }
         BackendMenu::setContext('Gundam.Order', 'bank', 'bank-account');
     }
 

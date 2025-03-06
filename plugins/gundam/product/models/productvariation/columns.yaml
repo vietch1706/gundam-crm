@@ -7,6 +7,10 @@ columns:
         type: text
         searchable: true
         sortable: true
+    image:
+        label: 'Hình Ảnh'
+        type: partial
+        path: ~/plugins/gundam/product/models/productvariation/_image.htm
     price:
         label: 'Giá (VNĐ)'
         type: text

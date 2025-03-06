@@ -2,7 +2,7 @@ plugin:
     name: 'gundam.blog::lang.plugin.name'
     description: 'gundam.blog::lang.plugin.description'
     author: Gundam
-    icon: oc-icon-adjust
+    icon: oc-icon-folder-open
     homepage: ''
 navigation:
     blog:
@@ -11,10 +11,10 @@ navigation:
         icon: oc-icon-folder-open
         sideMenu:
             blog-blog:
-                label: Tin Tức
+                label: 'Tin Tức'
                 url: gundam/blog/blog
                 icon: oc-icon-pencil
             blog-category:
-                label: Thể Loại
+                label: 'Thể Loại'
                 url: gundam/blog/category
                 icon: icon-sitemap

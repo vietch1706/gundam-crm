@@ -22,3 +22,7 @@ navigation:
                 label: Xã
                 url: gundam/general/ward
                 icon: icon-map-marker
+            general-supportive-page:
+                label: 'Trang hỗ trợ'
+                url: gundam/general/supportivepage
+                icon: icon-question-circle

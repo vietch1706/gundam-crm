@@ -1,5 +1,6 @@
 <?php namespace Gundam\Product;
 
+use Gundam\Product\Components\ProductDetail;
 use Gundam\Product\components\ProductList;
 use Gundam\Product\Models\Setting;
 use System\Classes\PluginBase;
@@ -30,6 +31,7 @@ class Plugin extends PluginBase
     {
         return [
             ProductList::class => 'productList',
+            ProductDetail::class => 'productDetail',
         ];
     }
 
@@ -40,8 +42,8 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label' => 'Cài đặt ngày giới hạn',
-                'description' => 'Giới hạn mua sản phẩm',
+                'label' => 'Cài đặt ngày giới hạn mua hàng',
+                'description' => 'Giới hạn mua sản phẩm trên ngày',
                 'category' => 'CATEGORY_BACKEND',
                 'icon' => 'icon-cog',
                 'class' => Setting::class,

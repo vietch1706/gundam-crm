@@ -1,0 +1,16 @@
+plugin:
+    name: 'gundam.auditlog::lang.plugin.name'
+    description: 'gundam.auditlog::lang.plugin.description'
+    author: Gundam
+    icon: oc-icon-list-alt
+    homepage: ''
+navigation:
+    logs:
+        label: 'Nhật Ký'
+        url: /
+        icon: icon-list-alt
+        sideMenu:
+            logs-auditlog:
+                label: 'Nhật Ký Quản Trị'
+                url: gundam/auditlog/auditlog
+                icon: icon-th-list

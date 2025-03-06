@@ -1,0 +1,61 @@
+{% if products is empty %}
+<div
+    class="alert alert-warning bg-yellow-100 text-yellow-800 border-l-4 border-yellow-500 p-4 my-4 rounded-md shadow-md">
+    Không có sản phẩm nào được tìm thấy trong danh mục này.
+</div>
+{% else %}
+<div id="productList" class="transition-all duration-300">
+    <div class="container mx-auto py-6" id="product">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for product in products %}
+            <a href="{{ 'product-detail'|page({ slug: product.slug }) }}" class="block">
+                <div
+                    class="relative bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 group transform hover:-translate-y-2 hover:shadow-xl">
+                    <div class="relative">
+                        <img src="{{ product.thumbnail|media }}" alt="{{ product.name }}"
+                             class="w-full h-[250px] object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors duration-200 truncate overflow-hidden whitespace-nowrap"
+                            title="{{ product.name }}">
+                            {{ product.name }}
+                        </h3>
+                        <p class="text-gray-600 mt-2"><i class="fa-solid fa-dong-sign"></i> {{ product.price }}
+                        </p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <!--        {{ products.render|raw }}-->
+        <div class="pagination mt-6 flex justify-center items-center gap-2">
+            {% if products.currentPage > 1 %}
+            <a href="?page={{ products.currentPage - 1 }}"
+               class="px-3 py-1 bg-white text-gray-800 border border-gray-300 rounded-full hover:bg-orange-100 hover:border-orange-500 hover:text-orange-600 transition-all duration-300">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            {% endif %}
+
+            {% set startPage = (products.currentPage - 2) > 0 ? (products.currentPage - 2) : 1 %}
+            {% set endPage = (startPage + 4) <= products.lastPage ? (startPage + 4) : products.lastPage %}
+            {% if endPage - startPage < 4 and endPage < products.lastPage %}
+            {% set startPage = (endPage - 4) > 0 ? (endPage - 4) : 1 %}
+            {% endif %}
+
+            {% for page in startPage..endPage %}
+            <a href="?page={{ page }}"
+               class="px-3 py-1 border border-gray-300 rounded-full transition-all duration-300 {% if page == products.currentPage %}bg-orange-500 text-white border-orange-500{% else %}bg-white text-gray-800 hover:bg-orange-100 hover:border-orange-500 hover:text-orange-600{% endif %}">
+                {{ page }}
+            </a>
+            {% endfor %}
+
+            {% if products.currentPage < products.lastPage %}
+            <a href="?page={{ products.currentPage + 1 }}"
+               class="px-3 py-1 bg-white text-gray-800 border border-gray-300 rounded-full hover:bg-orange-100 hover:border-orange-500 hover:text-orange-600 transition-all duration-300">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}

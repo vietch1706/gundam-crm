@@ -1,0 +1,12 @@
+list: $/gundam/general/models/supportivepage/columns.yaml
+modelClass: Gundam\General\Models\SupportivePage
+title: SupportivePage
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'gundam/general/supportivepage/update/:id'

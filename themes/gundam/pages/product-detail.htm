@@ -1,0 +1,428 @@
+url = "/san-pham/:slug"
+layout = "default"
+is_hidden = 0
+
+[productDetail]
+slug = "{{ :slug }}"
+==
+{% if product %}
+{% put title %}{{ product.name }}{% endput %}
+<div class="container mx-auto p-6">
+    <div class="flex flex-col md:flex-row gap-6">
+        {% partial 'product-detail/gallery' %}
+        {% partial 'product-detail/info' %}
+
+    </div>
+    <div class="mt-12">
+        {% partial 'product-detail/related' %}
+    </div>
+</div>
+{% else %}
+<div class="container mx-auto p-6 text-center">
+    <p class="text-xl text-gray-600">Product not found.</p>
+</div>
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // DOM Elements
+        const elements = {
+            mainCarousel: document.querySelector('#main-carousel'),
+            thumbCarousel: document.querySelector('#thumbnail-carousel'),
+            thumbPrev: document.querySelector('#thumb-prev'),
+            thumbNext: document.querySelector('#thumb-next'),
+            quantityInput: document.getElementById('quantity'),
+            decreaseBtn: document.getElementById('decrease-quantity'),
+            increaseBtn: document.getElementById('increase-quantity'),
+            availableQuantitySpan: document.getElementById('available-quantity'),
+            maxQuantityMessage: document.getElementById('max-quantity-message'),
+            relatedCarousel: document.querySelector('#related-carousel'),
+            relatedPrev: document.querySelector('#related-prev'),
+            relatedNext: document.querySelector('#related-next')
+        };
+
+        const mainItems = elements.mainCarousel?.querySelectorAll('.carousel-item-main') || [];
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const variantToggles = document.querySelectorAll('.variant-toggle');
+        const relatedItems = elements.relatedCarousel?.querySelectorAll('.related-item') || [];
+
+        // State
+        const state = {
+            currentIndex: 0,
+            originalIndex: 0,
+            itemsPerPage: 3,
+            maxQuantity: parseInt(JSON.parse("{{ product.quantity|default(100) }}")) || 100,
+            selectedVariantId: null,
+            relatedPosition: 0,
+            thumbPosition: 0,
+            animating: {
+                related: false, thumbnails: false
+            }
+        };
+
+        // Initialization
+        if (elements.availableQuantitySpan) {
+            elements.availableQuantitySpan.textContent = JSON.parse("{{ product.quantity|default('-') }}") || '-';
+        }
+
+        // Utility Functions
+        const setThumbnailCarouselWidth = () => {
+            if (elements.mainCarousel && elements.thumbCarousel) {
+                elements.thumbCarousel.style.width = `${elements.mainCarousel.offsetWidth}px`;
+            }
+        };
+
+        // Enhanced Main Carousel Functions
+        const showSlide = (index) => {
+            mainItems.forEach(item => item.classList.replace('opacity-100', 'opacity-0'));
+            mainItems[index].classList.replace('opacity-0', 'opacity-100');
+            thumbnails.forEach(thumb => thumb.classList.remove('border-orange-500'));
+            if (index < thumbnails.length) {
+                thumbnails[index].classList.add('border-orange-500');
+            }
+        };
+
+        // Enhanced Thumbnail Carousel
+        const setupThumbnailCarousel = () => {
+            if (!elements.thumbCarousel || !thumbnails.length) return;
+
+            // Clone thumbnails for infinite scroll
+            const originalThumbs = Array.from(thumbnails).map(thumb => thumb.cloneNode(true));
+
+            // Calculate visible thumbnails based on container width
+            const calculateVisibleThumbs = () => {
+                const thumbWidth = 84; // 80px (w-20) + 4px (space-x-2)
+                return state.itemsPerPage; // Keep using the original itemsPerPage for consistency
+            };
+
+            // Reset thumbnail carousel
+            const resetThumbCarousel = () => {
+                // Clear existing thumbnails
+                while (elements.thumbCarousel.firstChild) {
+                    elements.thumbCarousel.removeChild(elements.thumbCarousel.firstChild);
+                }
+
+                // Append original thumbnails
+                originalThumbs.forEach(thumb => {
+                    const newThumb = thumb.cloneNode(true);
+                    newThumb.addEventListener('click', () => {
+                        const index = parseInt(newThumb.dataset.index, 10);
+                        showSlide(index);
+                    });
+                    elements.thumbCarousel.appendChild(newThumb);
+                });
+
+                // Clone thumbnails for beginning and end
+                const visibleThumbs = calculateVisibleThumbs();
+
+                // Add end thumbnails to beginning
+                for (let i = originalThumbs.length - visibleThumbs; i < originalThumbs.length; i++) {
+                    const idx = i >= 0 ? i : i + originalThumbs.length;
+                    const clone = originalThumbs[idx].cloneNode(true);
+                    clone.classList.add('thumb-clone');
+                    clone.addEventListener('click', () => {
+                        const index = parseInt(clone.dataset.index, 10);
+                        showSlide(index);
+                    });
+                    elements.thumbCarousel.insertBefore(clone, elements.thumbCarousel.firstChild);
+                }
+
+                // Add beginning thumbnails to end
+                for (let i = 0; i < visibleThumbs; i++) {
+                    const clone = originalThumbs[i].cloneNode(true);
+                    clone.classList.add('thumb-clone');
+                    clone.addEventListener('click', () => {
+                        const index = parseInt(clone.dataset.index, 10);
+                        showSlide(index);
+                    });
+                    elements.thumbCarousel.appendChild(clone);
+                }
+
+                // Set initial position
+                state.thumbPosition = 0;
+                updateThumbPosition();
+            };
+
+            // Update thumbnail position
+            const updateThumbPosition = () => {
+                const allThumbs = elements.thumbCarousel.querySelectorAll('.thumbnail, .thumb-clone');
+                const thumbWidth = 84; // Width + gap
+
+                // Move all thumbnails to new position
+                for (let i = 0; i < allThumbs.length; i++) {
+                    allThumbs[i].style.transform = `translateX(${state.thumbPosition}px)`;
+                }
+            };
+
+            // Slide thumbnails
+            const slideThumbnails = (direction) => {
+                if (state.animating.thumbnails) return;
+
+                const thumbWidth = 84; // Width + gap
+                const visibleThumbs = calculateVisibleThumbs();
+                const shift = direction === 'next' ? -thumbWidth * visibleThumbs : thumbWidth * visibleThumbs;
+                const transitionDuration = 300; // ms
+                const allThumbs = elements.thumbCarousel.querySelectorAll('.thumbnail, .thumb-clone');
+
+                // Set transition
+                state.animating.thumbnails = true;
+                for (let i = 0; i < allThumbs.length; i++) {
+                    allThumbs[i].style.transition = `transform ${transitionDuration}ms ease`;
+                }
+
+                // Move thumbnails
+                state.thumbPosition += shift;
+                updateThumbPosition();
+
+                // Check for reset after transition
+                setTimeout(() => {
+                    // Remove transition for instant repositioning
+                    for (let i = 0; i < allThumbs.length; i++) {
+                        allThumbs[i].style.transition = 'none';
+                    }
+
+                    // Check if we need to reset position for infinite effect
+                    const totalOriginalWidth = originalThumbs.length * thumbWidth;
+
+                    if (Math.abs(state.thumbPosition) >= totalOriginalWidth) {
+                        // We've scrolled through all original thumbnails, reset position
+                        state.thumbPosition = state.thumbPosition % totalOriginalWidth;
+                        updateThumbPosition();
+                    } else if (state.thumbPosition > 0) {
+                        // We've scrolled backward past the beginning
+                        state.thumbPosition = -totalOriginalWidth + state.thumbPosition;
+                        updateThumbPosition();
+                    }
+
+                    state.animating.thumbnails = false;
+                }, transitionDuration);
+            };
+
+            // Initialize and bind events
+            resetThumbCarousel();
+
+            // Adjust event listeners for navigation
+            if (elements.thumbNext) {
+                elements.thumbNext.addEventListener('click', () => slideThumbnails('next'));
+            }
+            if (elements.thumbPrev) {
+                elements.thumbPrev.addEventListener('click', () => slideThumbnails('prev'));
+            }
+
+            // Recalculate on window resize
+            window.addEventListener('resize', () => {
+                // Debounce resize event
+                clearTimeout(window.thumbResizeTimeout);
+                window.thumbResizeTimeout = setTimeout(() => {
+                    resetThumbCarousel();
+                    setThumbnailCarouselWidth();
+                }, 250);
+            });
+
+            // Return the setup for use elsewhere
+            return {
+                resetThumbCarousel, slideThumbnails
+            };
+        };
+
+        // Related Products Carousel - Infinity Scroll
+        const setupRelatedCarousel = () => {
+            if (!elements.relatedCarousel || !relatedItems.length) return;
+
+            // Clone items for infinite scroll
+            const originalItems = Array.from(relatedItems).map(item => item.parentElement.cloneNode(true));
+
+            // Calculate visible items based on container width
+            const calculateVisibleItems = () => {
+                const containerWidth = elements.relatedCarousel.parentElement.clientWidth;
+                const itemWidth = 272; // 256px (w-64) + 16px (gap-4)
+                return Math.max(1, Math.floor(containerWidth / itemWidth));
+            };
+
+            // Reset carousel
+            const resetCarousel = () => {
+                // Clear existing items
+                while (elements.relatedCarousel.firstChild) {
+                    elements.relatedCarousel.removeChild(elements.relatedCarousel.firstChild);
+                }
+
+                // Append original items
+                originalItems.forEach(item => {
+                    elements.relatedCarousel.appendChild(item.cloneNode(true));
+                });
+
+                // Clone items for beginning and end
+                const visibleItems = calculateVisibleItems();
+
+                // Add end items to beginning
+                for (let i = originalItems.length - visibleItems; i < originalItems.length; i++) {
+                    const idx = i >= 0 ? i : i + originalItems.length;
+                    const clone = originalItems[idx].cloneNode(true);
+                    clone.classList.add('related-clone');
+                    elements.relatedCarousel.insertBefore(clone, elements.relatedCarousel.firstChild);
+                }
+
+                // Add beginning items to end
+                for (let i = 0; i < visibleItems; i++) {
+                    const clone = originalItems[i].cloneNode(true);
+                    clone.classList.add('related-clone');
+                    elements.relatedCarousel.appendChild(clone);
+                }
+
+                // Set initial position
+                state.relatedPosition = 0;
+                updateRelatedPosition();
+            };
+
+            // Update carousel position
+            const updateRelatedPosition = () => {
+                const allItems = elements.relatedCarousel.children;
+                const itemWidth = 272; // 256px + 16px gap
+
+                // Move all items to new position
+                for (let i = 0; i < allItems.length; i++) {
+                    allItems[i].style.transform = `translateX(${state.relatedPosition}px)`;
+                }
+            };
+
+            // Slide related products
+            const slideRelated = (direction) => {
+                if (state.animating.related) return;
+
+                const itemWidth = 272; // Width + gap
+                const visibleItems = calculateVisibleItems();
+                const shift = direction === 'next' ? -itemWidth * visibleItems : itemWidth * visibleItems;
+                const transitionDuration = 300; // ms
+                const allItems = elements.relatedCarousel.children;
+
+                // Set transition
+                state.animating.related = true;
+                for (let i = 0; i < allItems.length; i++) {
+                    allItems[i].style.transition = `transform ${transitionDuration}ms ease`;
+                }
+
+                // Move items
+                state.relatedPosition += shift;
+                updateRelatedPosition();
+
+                // Check for reset after transition
+                setTimeout(() => {
+                    // Remove transition for instant repositioning
+                    for (let i = 0; i < allItems.length; i++) {
+                        allItems[i].style.transition = 'none';
+                    }
+
+                    // Check if we need to reset position for infinite effect
+                    const totalOriginalWidth = originalItems.length * itemWidth;
+
+                    if (Math.abs(state.relatedPosition) >= totalOriginalWidth) {
+                        // We've scrolled through all original items, reset position
+                        state.relatedPosition = state.relatedPosition % totalOriginalWidth;
+                        updateRelatedPosition();
+                    } else if (state.relatedPosition > 0) {
+                        // We've scrolled backward past the beginning
+                        state.relatedPosition = -totalOriginalWidth + state.relatedPosition;
+                        updateRelatedPosition();
+                    }
+
+                    state.animating.related = false;
+                }, transitionDuration);
+            };
+
+            // Initialize and bind events
+            resetCarousel();
+
+            // Add event listeners for navigation
+            elements.relatedNext?.addEventListener('click', () => slideRelated('next'));
+            elements.relatedPrev?.addEventListener('click', () => slideRelated('prev'));
+
+            // Recalculate on window resize
+            window.addEventListener('resize', () => {
+                // Debounce resize event
+                clearTimeout(window.relatedResizeTimeout);
+                window.relatedResizeTimeout = setTimeout(() => {
+                    resetCarousel();
+                }, 250);
+            });
+
+            // Return the setup for use elsewhere
+            return {
+                resetCarousel, slideRelated
+            };
+        };
+
+        const updateQuantityDisplay = () => {
+            const value = parseInt(elements.quantityInput.value);
+            elements.maxQuantityMessage.classList.toggle('hidden', value < state.maxQuantity);
+            elements.quantityInput.value = Math.min(Math.max(value, 1), state.maxQuantity);
+        };
+
+        // Setup Main Carousel and Thumbnails
+        if (mainItems.length) {
+            showSlide(0);
+
+            // Setup thumbnail carousel with infinite scroll
+            const thumbCarousel = setupThumbnailCarousel();
+
+            // Setup variant toggles
+            variantToggles.forEach(toggle => {
+                const variant = {
+                    index: parseInt(toggle.dataset.variantIndex, 10),
+                    quantity: parseInt(toggle.dataset.variantQuantity, 10),
+                    id: toggle.dataset.variantId
+                };
+                const toggleStyles = {
+                    active: ['bg-orange-500', 'border-orange-800', 'text-white'],
+                    inactive: ['bg-white', 'border-gray-300', 'text-gray-800'],
+                    hover: ['hover:text-black']
+                };
+                toggle.addEventListener('mouseenter', () => {
+                    state.originalIndex = state.currentIndex;
+                    showSlide(variant.index);
+                });
+                toggle.addEventListener('mouseleave', () => {
+                    const targetIndex = state.selectedVariantId ? variantToggles.find(t => t.dataset.variantId === state.selectedVariantId)?.dataset.variantIndex : state.originalIndex;
+                    showSlide(parseInt(targetIndex || 0, 10));
+                });
+                toggle.addEventListener('click', () => {
+                    const isDeselecting = state.selectedVariantId === variant.id;
+                    state.selectedVariantId = isDeselecting ? null : variant.id;
+                    variantToggles.forEach((t => {
+                        t.classList.remove(...toggleStyles.active);
+                        t.classList.add(...toggleStyles.hover);
+                    }));
+                    toggle.classList.remove(...(isDeselecting ? toggleStyles.active : toggleStyles.inactive));
+                    toggle.classList.add(...(isDeselecting ? toggleStyles.inactive : toggleStyles.active));
+                    showSlide(isDeselecting ? 0 : variant.index);
+                    state.maxQuantity = isDeselecting ? parseInt(JSON.parse("{{ product.quantity|default(100) }}")) : variant.quantity;
+                    if (elements.availableQuantitySpan) {
+                        elements.availableQuantitySpan.textContent = isDeselecting ? JSON.parse("{{ product.quantity|default('-') }}") : variant.quantity;
+                    }
+                    updateQuantityDisplay();
+                });
+            });
+        }
+
+        // Setup Related Products Carousel
+        if (relatedItems.length) {
+            setupRelatedCarousel();
+        }
+
+        // Setup Quantity Controls
+        if (elements.quantityInput && elements.decreaseBtn && elements.increaseBtn) {
+            elements.decreaseBtn.addEventListener('click', () => {
+                elements.quantityInput.value = Math.max(parseInt(elements.quantityInput.value) - 1, 1);
+                updateQuantityDisplay();
+            });
+            elements.increaseBtn.addEventListener('click', () => {
+                elements.quantityInput.value = Math.min(parseInt(elements.quantityInput.value) + 1, state.maxQuantity);
+                updateQuantityDisplay();
+            });
+            elements.quantityInput.addEventListener('change', updateQuantityDisplay);
+            updateQuantityDisplay();
+        }
+
+        // Initial width setup
+        setThumbnailCarouselWidth();
+    });
+</script>
